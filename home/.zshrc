@@ -47,6 +47,9 @@ COMPLETION_WAITING_DOTS="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git sudo arch archlinux yaourt ssh sudo)
 
+source "$HOME/.homesick/repos/homeshick/homeshick.sh"
+fpath=($HOME/.homesick/repos/homeshick/completions $fpath)
+
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -67,5 +70,3 @@ cd $HOME
 # Better du
 alias du="cdu -idh"
 
-source "$HOME/.homesick/repos/homeshick/homeshick.sh"
-fpath=($HOME/.homesick/repos/homeshick/completions $fpath)
