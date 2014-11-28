@@ -2,6 +2,7 @@
 " Alex Mikhalev's nice vimrc
 " 
 
+scriptencoding utf-8
 " Vundle {{{
 set nocompatible	" Puts the im in VIm
 filetype off		" Required for Vundle
@@ -11,19 +12,25 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " Place all 'Plugin's here
-Plugin	'scrooloose/nerdtree'
-Plugin  'sjl/gundo.vim'
-Plugin  'fholgado/minibufexpl.vim'
-Plugin  'tpope/vim-commentary'
-Plugin  'vim-scripts/javacomplete'
-Plugin  'scrooloose/syntastic'
-Plugin  'syngan/vim-vimlint'
-Plugin  'syngan/vim-vimlparser'
-Plugin  'MarcWeber/vim-addon-mw-utils'
-Plugin  'tomtom/tlib_vim'
-Plugin  'garbas/vim-snipmate'
-Plugin  'honza/vim-snippets'
-Plugin  'kien/ctrlp.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'sjl/gundo.vim'
+Plugin 'fholgado/minibufexpl.vim'
+Plugin 'rking/ag.vim'
+
+Plugin 'tpope/vim-commentary'
+Plugin 'scrooloose/syntastic'
+Plugin 'syngan/vim-vimlint'
+Plugin 'syngan/vim-vimlparser'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'kien/ctrlp.vim'
+Plugin 'Yggdroot/indentLine'
+Plugin 'Raimondi/delimitMate'
+
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'vim-scripts/javacomplete'
+Plugin 'garbas/vim-snipmate'
+Plugin 'honza/vim-snippets'
 
 call vundle#end()
 
@@ -33,12 +40,19 @@ call vundle#end()
 " NERDTree
 let g:NERDTreeDirArrows = 0
 
+" UltiSnips
+" let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsEditSplit = "verticle"
+
+" indentLine
+let g:indentLine_char = '│'
+
 " }}}
 " Misc. {{{
 set encoding=utf-8
 filetype plugin indent on
 
-set wildmenu
+set hidden
 " }}}
 " UI {{{
 colorscheme desert	" Some nice colors
@@ -50,7 +64,7 @@ set tabstop=4		" Visual spaces per tab
 set softtabstop=4	" Text spaces per tab
 set expandtab		" Tab key -> spaces
 
-set number		    " Line numbers 
+set relativenumber	" Relative line numbers 
 
 " Better searching
 set ignorecase		" Ignore case in search
@@ -65,7 +79,10 @@ set showmatch       " Highlight ({[]}) matches
 set foldenable
 set foldlevelstart=10
 set foldnestmax=10
-set foldmethod=indent
+set foldmethod=syntax
+
+" Vim command completion
+set wildmenu
 
 " }}}
 " Regular mappings {{{
@@ -105,7 +122,7 @@ map     <leader>cp          :cprevious<CR>
 " }}}
 " AutoCmds {{{
 " Open NERDTree on start
-autocmd vimenter * :NERDTree
+" autocmd vimenter * :NERDTree
 
 " Close vim if the last window is NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
@@ -113,12 +130,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 " javacomplete
 autocmd Filetype java setlocal omnifunc=javacomplete#Complete
 autocmd Filetype java setlocal completefunc=javacomplete#CompleteParamsInfo
-"autocmd Filetype java map <leader>b :call javacomplete#GoToDefinition()<CR>
 
 " }}}
 " Custom functions {{{
-function! JavaTemp()
-    let file = tmpname()
-    let 
-endfunction
 " }}}
