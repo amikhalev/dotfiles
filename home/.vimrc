@@ -16,8 +16,15 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'sjl/gundo.vim'
 Plugin 'fholgado/minibufexpl.vim'
 Plugin 'rking/ag.vim'
+Plugin 'bling/vim-airline'
 
 Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-dispatch'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-projectionist'
+
 Plugin 'scrooloose/syntastic'
 Plugin 'syngan/vim-vimlint'
 Plugin 'syngan/vim-vimlparser'
@@ -26,6 +33,8 @@ Plugin 'tomtom/tlib_vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'Yggdroot/indentLine'
 Plugin 'Raimondi/delimitMate'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'godlygeek/tabular'
 
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-scripts/javacomplete'
@@ -41,11 +50,13 @@ call vundle#end()
 let g:NERDTreeDirArrows = 0
 
 " UltiSnips
-" let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsEditSplit = "verticle"
 
 " indentLine
 let g:indentLine_char = '│'
+
+" Tabular
+source ~/.vim/bundle/tabular/after/plugin/TabularMaps.vim
 
 " }}}
 " Misc. {{{
@@ -102,23 +113,23 @@ inoremap    jk              <ESC>
 nmap    <space>             za
 " }}}
 " Leader mappings {{{
-map     <leader>r           :redraw!<CR>
-map     <leader>sv          :so ~/.vimrc<CR>
-map     <leader><space>     :nohlsearch<CR>
-map     <leader>pi          :PluginInstall<CR>
-map     <leader>pu          :PluginInstall!<CR>
-map     <leader>pc          :PluginClean<CR>
-map     <leader>tn          :NERDTreeToggle<CR>
-map     <leader>tb          :MBEToggle<CR>
-map     <leader>mm          :wa \| silent make \| redraw! \| cw<CR>
-map     <leader>mr          :make run \| redraw!<CR>
-map     <leader>mc          :make clean \| redraw!<CR>
-map     <leader>ev          :e ~/.vimrc<CR>
-map     <leader>et          :e ~/.tmux.conf<CR>
-map     <leader>em          :e ./Makefil<CR>
-map     <leader>sc          :wa \| SyntasticCheck \| Errors<CR>
-map     <leader>cn          :cnext<CR>
-map     <leader>cp          :cprevious<CR>
+map <leader>r        :redraw!<CR>
+map <leader>sv       :so ~/.vimrc<CR>
+map <leader><space>  :nohlsearch<CR>
+map <leader>pi       :PluginInstall<CR>
+map <leader>pu       :PluginInstall!<CR>
+map <leader>pc       :PluginClean<CR>
+map <leader>tn       :NERDTreeToggle<CR>
+map <leader>tb       :MBEToggle<CR>
+map <leader>mm       :wa \| silent make \| redraw! \| cw<CR>
+map <leader>mr       :make run \| redraw!<CR>
+map <leader>mc       :make clean \| redraw!<CR>
+map <leader>ev       :e ~/.vimrc<CR>
+map <leader>et       :e ~/.tmux.conf<CR>
+map <leader>em       :e ./Makefil<CR>
+map <leader>sc       :wa \| SyntasticCheck \| Errors<CR>
+map <leader>cn       :cnext<CR>
+map <leader>cp       :cprevious<CR>
 " }}}
 " AutoCmds {{{
 " Open NERDTree on start
