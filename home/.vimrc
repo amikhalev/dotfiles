@@ -11,6 +11,8 @@ filetype off		" Required for Vundle
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
+Plugin 'gmarik/Vundle.vim'
+
 " Place all 'Plugin's here
 Plugin 'scrooloose/nerdtree'
 Plugin 'sjl/gundo.vim'
@@ -35,6 +37,7 @@ Plugin 'Yggdroot/indentLine'
 Plugin 'Raimondi/delimitMate'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'godlygeek/tabular'
+Plugin 'tfnico/vim-gradle'
 
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-scripts/javacomplete'
