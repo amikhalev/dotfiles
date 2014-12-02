@@ -38,6 +38,8 @@ Plugin 'Raimondi/delimitMate'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'godlygeek/tabular'
 Plugin 'tfnico/vim-gradle'
+Plugin 'majutsushi/tagbar'
+Plugin 'edkolev/promptline.vim'
 
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-scripts/javacomplete'
@@ -61,6 +63,12 @@ let g:indentLine_char = '│'
 " Tabular
 source ~/.vim/bundle/tabular/after/plugin/TabularMaps.vim
 
+" Tagbar
+let g:tagbar_iconchars = ['+', '-']
+
+" Airline
+let g:airline_powerline_fonts = 1
+
 " }}}
 " Misc. {{{
 set encoding=utf-8
@@ -78,6 +86,7 @@ set tabstop=4		" Visual spaces per tab
 set softtabstop=4	" Text spaces per tab
 set expandtab		" Tab key -> spaces
 
+set number          " Line number
 set relativenumber	" Relative line numbers 
 
 " Better searching
@@ -122,11 +131,17 @@ map <leader><space>  :nohlsearch<CR>
 map <leader>pi       :PluginInstall<CR>
 map <leader>pu       :PluginInstall!<CR>
 map <leader>pc       :PluginClean<CR>
-map <leader>tn       :NERDTreeToggle<CR>
+map <leader>tf       :NERDTreeToggle<CR>
 map <leader>tb       :MBEToggle<CR>
-map <leader>mm       :wa \| silent make \| redraw! \| cw<CR>
-map <leader>mr       :make run \| redraw!<CR>
-map <leader>mc       :make clean \| redraw!<CR>
+map <leader>tt       :TagbarToggle<CR>
+map <leader>tc       :tabnew<CR>
+map <leader>tx       :tabclose<CR>
+map <leader>tn       :tabnext<CR>
+map <leader>tp       :tabprev<CR>
+map <leader>dm       :Make<CR>
+map <leader>db       :Make!<CR>
+map <leader>dd       :Dispatch<CR>
+map <leader>dc       :Copen<CR>
 map <leader>ev       :e ~/.vimrc<CR>
 map <leader>et       :e ~/.tmux.conf<CR>
 map <leader>em       :e ./Makefil<CR>

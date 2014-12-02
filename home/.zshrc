@@ -70,3 +70,5 @@ cd $HOME
 # Better du
 alias du="cdu -idh"
 
+# Annoying grep thing
+unset GREP_OPTIONS
