@@ -16,7 +16,6 @@ Plugin 'gmarik/Vundle.vim'
 " Place all 'Plugin's here
 Plugin 'scrooloose/nerdtree'
 Plugin 'sjl/gundo.vim'
-" Plugin 'fholgado/minibufexpl.vim'
 Plugin 'rking/ag.vim'
 Plugin 'bling/vim-airline'
 
@@ -40,6 +39,7 @@ Plugin 'godlygeek/tabular'
 Plugin 'tfnico/vim-gradle'
 Plugin 'majutsushi/tagbar'
 Plugin 'edkolev/promptline.vim'
+Plugin 'lukerandall/haskellmode-vim'
 
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-scripts/javacomplete'
