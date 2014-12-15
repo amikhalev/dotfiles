@@ -43,7 +43,7 @@ Plugin 'edkolev/promptline.vim'
 
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-scripts/javacomplete'
-Plugin 'garbas/vim-snipmate'
+Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 
 call vundle#end()
@@ -55,6 +55,9 @@ call vundle#end()
 let g:NERDTreeDirArrows = 0
 
 " UltiSnips
+let g:UltiSnipsExpandTrigger = "<c-j>"
+let g:UltiSnipsJumpForwardTrigger = "<c-j>"
+let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
 let g:UltiSnipsEditSplit = "verticle"
 
 " indentLine
@@ -81,6 +84,7 @@ let g:airline_symbols.paste      = 'ρ'
 let g:airline_symbols.paste      = 'Þ'
 let g:airline_symbols.paste      = '∥'
 let g:airline_symbols.whitespace = 'Ξ'
+let g:airline_symbols.space      = ' '
 " tab line
 let g:airline#extensions#tabline#enabled = 1
 
@@ -162,8 +166,10 @@ map <leader>dd      :Dispatch<CR>
 map <leader>dc      :Copen<CR>
 map <leader>ev      :e ~/.vimrc<CR>
 map <leader>et      :e ~/.tmux.conf<CR>
-map <leader>em      :e ./Makefil<CR>
+map <leader>em      :e ./Makefile<CR>
+map <leader>ep      :e ./.projections.json<CR>
 map <leader>sc      :wa \| SyntasticCheck \| Errors<CR>
+map <leader>se      :Errors<CR>
 map <leader>cn      :cnext<CR>
 map <leader>cp      :cprevious<CR>
 " }}}
