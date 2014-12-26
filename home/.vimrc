@@ -158,6 +158,7 @@ map <leader>tx      :tabclose<CR>
 map <leader>tn      :tabnext<CR>
 map <leader>tp      :tabprev<CR>
 map <leader>bn      :bn<CR>
+map <leader>bp      :bp<CR>
 map <leader>bs      :buffers<CR>
 map <leader>bd      :bd<CR>
 map <leader>dm      :Make<CR>
