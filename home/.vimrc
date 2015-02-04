@@ -70,6 +70,7 @@ source ~/.vim/bundle/tabular/after/plugin/TabularMaps.vim
 let g:tagbar_iconchars = ['+', '-']
 
 " Airline
+set guifont=Inconsolata\ for\ Powerline:h15
 let g:airline_powerline_fonts=1
 " tab line
 let g:airline#extensions#tabline#enabled = 1
