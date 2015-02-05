@@ -18,6 +18,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'sjl/gundo.vim'
 Plugin 'rking/ag.vim'
 Plugin 'bling/vim-airline'
+Plugin 'edkolev/tmuxline.vim'
 
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-dispatch'

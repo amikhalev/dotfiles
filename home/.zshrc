@@ -1,74 +1,64 @@
-# Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+# Antigen
+source $HOME/.homesick/repos/antigen/antigen.zsh
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-ZSH_THEME="ys"
+antigen use oh-my-zsh
 
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
+# oh-my-zsh plugins
+antigen bundle git
+antigen bundle sudo
+antigen bundle command-not-found
 
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
+# Other plugins
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle zsh-users/zsh-completions src
+antigen bundle arialdomartini/oh-my-git
+antigen bundle peterhurford/git-it-on.zsh
+antigen bundle supercrabtree/k
+antigen bundle caarlos0/zsh-open-pr
 
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
+# Package manager plugins
+if [[ `uname` == 'Linux' ]]; then # Linux (probably arch linux)
+        antigen bundle arch
+        antigen bundle archlinux
+        antigen bundle systemd
+elif [[ `uname` == 'Darwin' ]]; then # Mac OS X
+        antigen bundle brew
+fi
 
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
+# Theme
+antigen bundle nojhan/liquidprompt
+# antigen theme arialdomartini/oh-my-git-themes oppa-lana-style
 
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
+antigen apply
 
-# Uncomment the following line to enable command auto-correction.
 ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
 
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git sudo arch archlinux yaourt ssh sudo systemd brew)
-
+# Use homeshick
 source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 fpath=($HOME/.homesick/repos/homeshick/completions $fpath)
 
-source $ZSH/oh-my-zsh.sh
-
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
 export LANG=en_US.UTF-8
-
-export TERM=xterm-256color
 
 # Preferred editor
 export EDITOR='vim'
+bindkey -v
 
-# cd to home for convenience
-cd $HOME
+PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 
-# Better du
-alias du="cdu -idh"
+bindkey '^P' up-history
+bindkey '^N' down-history
+bindkey '^?' backward-delete-char
+bindkey '^h' backward-delete-char
+bindkey '^w' backward-kill-word
+bindkey '^r' history-incremental-search-backward
 
-# Annoying grep thing
-unset GREP_OPTIONS
+function zle-line-init zle-keymap-select {
+    VIM_PROMPT="%{$fg_bold[yellow]%} [% NORMAL]%  %{$reset_color%}"
+    RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/} $EPS1"
+    zle reset-prompt
+}
+
+zle -N zle-line-init
+zle -N zle-keymap-select
+export KEYTIMEOUT=1
