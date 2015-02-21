@@ -18,7 +18,6 @@ antigen bundle caarlos0/zsh-open-pr
 
 # Package manager plugins
 if [[ `uname` == 'Linux' ]]; then # Linux (probably arch linux)
-        antigen bundle arch
         antigen bundle archlinux
         antigen bundle systemd
         # aura functions
