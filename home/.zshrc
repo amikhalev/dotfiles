@@ -21,6 +21,10 @@ if [[ `uname` == 'Linux' ]]; then # Linux (probably arch linux)
         antigen bundle arch
         antigen bundle archlinux
         antigen bundle systemd
+        # aura functions
+        aupg() {
+            sudo aura -Syu --noconfirm && sudo aura -Ayux --noconfirm
+        }
 elif [[ `uname` == 'Darwin' ]]; then # Mac OS X
         antigen bundle brew
 fi
@@ -62,3 +66,4 @@ function zle-line-init zle-keymap-select {
 zle -N zle-line-init
 zle -N zle-keymap-select
 export KEYTIMEOUT=1
+

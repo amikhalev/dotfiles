@@ -93,8 +93,9 @@ colorscheme desert " Some nice colors
 syntax enable      " That nice syntax highlighting
 
                    " Indentation
+set smartindent
+set shiftwidth=4
 set tabstop=4      " Visual spaces per tab
-set softtabstop=4  " Text spaces per tab
 set expandtab      " Tab key -> spaces
 
 set number         " Line number
