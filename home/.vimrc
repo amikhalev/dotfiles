@@ -88,6 +88,7 @@ filetype plugin indent on
 set hidden
 " }}}
 " UI {{{
+set t_Co=256
 colorscheme desert " Some nice colors
 
 syntax enable      " That nice syntax highlighting
