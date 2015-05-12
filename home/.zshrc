@@ -68,5 +68,4 @@ export KEYTIMEOUT=1
 
 # ssh agent
 eval $(ssh-agent) 1>/dev/null
-ssh-add ~/.ssh/id_rsa
-
+ssh-add -l >/dev/null || alias ssh='ssh-add -l >/dev/null || ssh-add && unalias ssh; ssh'
