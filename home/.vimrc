@@ -41,8 +41,9 @@ Plugin 'tfnico/vim-gradle'
 Plugin 'majutsushi/tagbar'
 Plugin 'edkolev/promptline.vim'
 Plugin 'lukerandall/haskellmode-vim'
+Plugin 'wting/rust.vim'
 
-Plugin 'Valloric/YouCompleteMe'
+"Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-scripts/javacomplete'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
@@ -143,7 +144,6 @@ map <leader>pi      :PluginInstall<CR>
 map <leader>pu      :PluginInstall!<CR>
 map <leader>pc      :PluginClean<CR>
 map <leader>tf      :NERDTreeToggle<CR>
-map <leader>tb      :MBEToggle<CR>
 map <leader>tt      :TagbarToggle<CR>
 map <leader>tc      :tabnew<CR>
 map <leader>tx      :tabclose<CR>
