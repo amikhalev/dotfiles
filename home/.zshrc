@@ -18,9 +18,12 @@ antigen bundle caarlos0/zsh-open-pr
 
 # Package manager plugins
 if [[ `uname` == 'Linux' ]]; then # Linux (probably arch linux)
-        antigen bundle arch
         antigen bundle archlinux
         antigen bundle systemd
+        # aura functions
+        aupg() {
+            sudo aura -Syu --noconfirm && sudo aura -Ayux --noconfirm
+        }
 elif [[ `uname` == 'Darwin' ]]; then # Mac OS X
         antigen bundle brew
 fi
@@ -64,3 +67,7 @@ zle -N zle-keymap-select
 export KEYTIMEOUT=1
 
 export TERM=screen-256color
+
+# ssh agent
+eval $(ssh-agent) 1>/dev/null
+ssh-add -l >/dev/null || alias ssh='ssh-add -l >/dev/null || ssh-add && unalias ssh; ssh'
