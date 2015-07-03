@@ -7,6 +7,7 @@ antigen use oh-my-zsh
 antigen bundle git
 antigen bundle sudo
 antigen bundle command-not-found
+antigen bundle pip
 
 # Other plugins
 antigen bundle zsh-users/zsh-syntax-highlighting
@@ -24,6 +25,8 @@ if [[ `uname` == 'Linux' ]]; then # Linux (probably arch linux)
         aupg() {
             sudo aura -Syu --noconfirm && sudo aura -Ayux --noconfirm
         }
+
+        eval $(keychain --eval --agents ssh -Q --quiet id_rsa)
 elif [[ `uname` == 'Darwin' ]]; then # Mac OS X
         antigen bundle brew
         PHP_AUTOCONF="/usr/local/bin/autoconf"
@@ -53,6 +56,7 @@ antigen apply
 
 ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
+unsetopt AUTO_CD
 
 # Use homeshick
 source "$HOME/.homesick/repos/homeshick/homeshick.sh"
@@ -84,7 +88,3 @@ zle -N zle-keymap-select
 export KEYTIMEOUT=1
 
 export TERM=screen-256color
-
-# ssh agent
-eval $(ssh-agent) 1>/dev/null
-ssh-add -l >/dev/null || alias ssh='ssh-add -l >/dev/null || ssh-add && unalias ssh; ssh'
