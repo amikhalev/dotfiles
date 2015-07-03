@@ -26,6 +26,23 @@ if [[ `uname` == 'Linux' ]]; then # Linux (probably arch linux)
         }
 elif [[ `uname` == 'Darwin' ]]; then # Mac OS X
         antigen bundle brew
+        PHP_AUTOCONF="/usr/local/bin/autoconf"
+        export PATH="/usr/local/sbin:$PATH"
+        alias nginx.start='sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.nginx.plist'
+        alias nginx.stop='sudo launchctl unload /Library/LaunchDaemons/homebrew.mxcl.nginx.plist'
+        alias nginx.restart='nginx.stop && nginx.start'
+        alias php-fpm.start="sudo launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.php56.plist"
+        alias php-fpm.stop="sudo launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.php56.plist"
+        alias php-fpm.restart='php-fpm.stop && php-fpm.start'
+        alias mysql.start="sudo launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist"
+        alias mysql.stop="sudo launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist"
+        alias mysql.restart='mysql.stop && mysql.start'
+        alias nginx.logs.error='tail -250f /usr/local/etc/nginx/logs/error.log'
+        alias nginx.logs.access='tail -250f /usr/local/etc/nginx/logs/access.log'
+        alias nginx.logs.default.access='tail -250f /usr/local/etc/nginx/logs/default.access.log'
+        alias nginx.logs.default-ssl.access='tail -250f /usr/local/etc/nginx/logs/default-ssl.access.log'
+        alias nginx.logs.phpmyadmin.error='tail -250f /usr/local/etc/nginx/logs/phpmyadmin.error.log'
+        alias nginx.logs.phpmyadmin.access='tail -250f /usr/local/etc/nginx/logs/phpmyadmin.access.log'
 fi
 
 # Theme
@@ -47,7 +64,7 @@ export LANG=en_US.UTF-8
 export EDITOR='vim'
 bindkey -v
 
-PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+export PATH="$PATH:$HOME/.composer/vendor/bin"
 
 bindkey '^P' up-history
 bindkey '^N' down-history

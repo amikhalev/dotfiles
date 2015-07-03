@@ -3,58 +3,66 @@
 " 
 
 scriptencoding utf-8
-" Vundle {{{
+" NeoBundle {{{
 set nocompatible	" Puts the im in VIm
-filetype off		" Required for Vundle
+filetype off
 
-" Initialize Vundle
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+" Initialize NeoBundle
+set rtp+=~/.vim/bundle/neobundle.vim
+call neobundle#begin(expand('~/.vim/bundle/'))
 
-Plugin 'gmarik/Vundle.vim'
+NeoBundleFetch 'Shougo/neobundle.vim'
 
-" Place all 'Plugin's here
-Plugin 'scrooloose/nerdtree'
-Plugin 'sjl/gundo.vim'
-Plugin 'rking/ag.vim'
-Plugin 'bling/vim-airline'
-Plugin 'edkolev/tmuxline.vim'
+" Place all 'NeoBundle's here
+NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'sjl/gundo.vim'
+NeoBundle 'rking/ag.vim'
+NeoBundle 'bling/vim-airline'
+NeoBundle 'edkolev/tmuxline.vim'
 
-Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-dispatch'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-projectionist'
+NeoBundle 'tpope/vim-commentary'
+NeoBundle 'tpope/vim-dispatch'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'tpope/vim-repeat'
+NeoBundle 'tpope/vim-projectionist'
 
-Plugin 'scrooloose/syntastic'
-Plugin 'syngan/vim-vimlint'
-Plugin 'syngan/vim-vimlparser'
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'kien/ctrlp.vim'
-Plugin 'Yggdroot/indentLine'
-Plugin 'Raimondi/delimitMate'
-Plugin 'Lokaltog/vim-easymotion'
-Plugin 'godlygeek/tabular'
-Plugin 'tfnico/vim-gradle'
-Plugin 'majutsushi/tagbar'
-Plugin 'edkolev/promptline.vim'
-Plugin 'lukerandall/haskellmode-vim'
-Plugin 'wting/rust.vim'
+NeoBundle 'scrooloose/syntastic'
+NeoBundle 'syngan/vim-vimlint'
+NeoBundle 'syngan/vim-vimlparser'
+NeoBundle 'MarcWeber/vim-addon-mw-utils'
+NeoBundle 'tomtom/tlib_vim'
+NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'Yggdroot/indentLine'
+NeoBundle 'Raimondi/delimitMate'
+NeoBundle 'Lokaltog/vim-easymotion'
+NeoBundle 'godlygeek/tabular'
+NeoBundle 'tfnico/vim-gradle'
+NeoBundle 'majutsushi/tagbar'
+NeoBundle 'edkolev/promptline.vim'
+NeoBundle 'lukerandall/haskellmode-vim'
+NeoBundle 'wting/rust.vim'
 
-"Plugin 'Valloric/YouCompleteMe'
-Plugin 'vim-scripts/javacomplete'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
+NeoBundle 'Valloric/YouCompleteMe', {
+    \ 'build'      : {
+        \ 'mac'     : './install.sh --clang-completer --system-libclang --omnisharp-completer',
+        \ 'unix'    : './install.sh --clang-completer --system-libclang --omnisharp-completer'
+    \ }
+\ }
 
-call vundle#end()
+NeoBundle 'vim-scripts/javacomplete'
+NeoBundle 'SirVer/ultisnips'
+NeoBundle 'honza/vim-snippets'
+
+call neobundle#end()
+
+NeoBundleCheck
 
 " }}}
 " Plugin configs {{{
 
 " NERDTree
-let g:NERDTreeDirArrows = 0
+let g:NERDTreeDirArrows = 1
 
 " UltiSnips
 let g:UltiSnipsExpandTrigger = "<c-j>"
@@ -72,14 +80,20 @@ source ~/.vim/bundle/tabular/after/plugin/TabularMaps.vim
 let g:tagbar_iconchars = ['+', '-']
 
 " Airline
-set guifont=Inconsolata\ for\ Powerline:h15
 set laststatus=2
 let g:airline_powerline_fonts=1
+let g:airline_theme='powerlineish'
+let g:airline_left_sep=''
+let g:airline_right_sep=''
+let g:airline_section_z=''
 " tab line
 let g:airline#extensions#tabline#enabled = 1
 
 " haskellmode
 let g:haddock_browser = "/usr/bin/chromium"
+
+" eclim
+let g:EclimCompletionMethod = 'omnifunc'
 
 " }}}
 " Misc. {{{
@@ -89,12 +103,15 @@ filetype plugin indent on
 set hidden
 " }}}
 " UI {{{
+set guifont=Inconsolata\ for\ Powerline:h15
 set t_Co=256
+set mouse=a
 colorscheme desert " Some nice colors
 
 syntax enable      " That nice syntax highlighting
 
-                   " Indentation
+" Indentation
+set smarttab
 set smartindent
 set shiftwidth=4
 set tabstop=4      " Visual spaces per tab
@@ -103,12 +120,11 @@ set expandtab      " Tab key -> spaces
 set number         " Line number
 set relativenumber " Relative line numbers
 
-                   " Better searching
+" Better searching
 set ignorecase     " Ignore case in search
 set incsearch      " Incremental search
 set hlsearch       " Highlight search
 
-set wildmenu       " Vim command completion
 set lazyredraw     " Performant redraw
 set showmatch      " Highlight ({[]}) matches
 
@@ -120,12 +136,26 @@ set foldmethod=syntax
 
 " Vim command completion
 set wildmenu
+set wildmode=list:longest,full
+
+" CtrlP use ag and git
+let g:ctrlp_use_caching = 0
+if executable('ag')
+    set grepprg=ag\ --nogroup\ --nocolor
+
+    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+else
+    let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
+    let g:ctrlp_prompt_mappings = {
+                \ 'AcceptSelection("e")': ['<space>', '<cr>', '<2-LeftMouse>'],
+                \ }
+endif
 
 " }}}
 " Regular mappings {{{
 
 " Nicer leader
-let g:mapleader = ','
+let g:mapleader = "\<space>"
 
 " Better mobility
 nnoremap j gj
@@ -136,11 +166,18 @@ nnoremap E $
 " ESC is so far away...
 inoremap  jk       <ESC>
 
-nmap      <space>  za
 " }}}
 " Leader mappings {{{
 map <leader>r       :redraw!<CR>
+map <leader>o       :CtrlP<CR>
+map <leader>w       :w<CR>
 map <leader>sv      :so ~/.vimrc<CR>
+vmap <leader>y      "+y
+vmap <leader>d      "+d
+nmap <leader>p      "+p
+nmap <leader>P      "+P
+vmap <leader>p      "+p
+vmap <leader>P      "+P
 map <leader><space> :nohlsearch<CR>
 map <leader>pi      :PluginInstall<CR>
 map <leader>pu      :PluginInstall!<CR>
@@ -155,6 +192,7 @@ map <leader>bn      :bn<CR>
 map <leader>bp      :bp<CR>
 map <leader>bs      :buffers<CR>
 map <leader>bd      :bd<CR>
+map <leader>bb      :buffers<CR>:buffer<Space>
 map <leader>dm      :Make<CR>
 map <leader>db      :Make!<CR>
 map <leader>dd      :Dispatch<CR>
