@@ -41,8 +41,14 @@ NeoBundle 'tfnico/vim-gradle'
 NeoBundle 'majutsushi/tagbar'
 NeoBundle 'edkolev/promptline.vim'
 NeoBundle 'lukerandall/haskellmode-vim'
-NeoBundle 'wting/rust.vim'
+NeoBundle 'rust-lang/rust.vim'
 
+" NeoBundle 'phildawes/racer', {
+"             \   'build' : {
+"             \     'mac': 'cargo build --release',
+"             \     'unix': 'cargo build --release',
+"             \   }
+"             \ }
 NeoBundle 'Valloric/YouCompleteMe', {
     \ 'build'      : {
         \ 'mac'     : './install.sh --clang-completer --system-libclang --omnisharp-completer',
@@ -196,6 +202,7 @@ map <leader>bb      :buffers<CR>:buffer<Space>
 map <leader>dm      :Make<CR>
 map <leader>db      :Make!<CR>
 map <leader>dd      :Dispatch<CR>
+map <leader>ds      :Start<CR>
 map <leader>dc      :Copen<CR>
 map <leader>ev      :e ~/.vimrc<CR>
 map <leader>et      :e ~/.tmux.conf<CR>
@@ -216,6 +223,9 @@ autocmd Filetype java setlocal completefunc=javacomplete#CompleteParamsInfo
 
 " haskellmode
 autocmd Filetype *.hs compiler ghc
+
+" rust
+autocmd Filetype *.rs let b:dispatch="cargo run"
 
 " }}}
 " Custom functions {{{

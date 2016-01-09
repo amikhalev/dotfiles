@@ -70,6 +70,8 @@ bindkey -v
 
 export PATH="$PATH:$HOME/.composer/vendor/bin"
 
+alias gping="ping 8.8.8.8"
+
 bindkey '^P' up-history
 bindkey '^N' down-history
 bindkey '^?' backward-delete-char
