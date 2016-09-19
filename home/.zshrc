@@ -1,7 +1,20 @@
+# Use homeshick
+source "$HOME/.homesick/repos/homeshick/homeshick.sh"
+fpath=($HOME/.homesick/repos/homeshick/completions $fpath)
+
+# For vim
+if [ ! -e "$HOME/.vim/bundle/neobundle.vim" ]; then
+    mkdir -p "$HOME/.vim/bundle"
+    git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
+fi
+
 # Antigen
+if [ ! -e "$HOME/.homesick/repos/antigen" ]; then
+    homeshick clone https://github.com/zsh-users/antigen.git
+fi
 source $HOME/.homesick/repos/antigen/antigen.zsh
 
-antigen use oh-my-zsh
+# antigen use oh-my-zsh
 
 # oh-my-zsh plugins
 antigen bundle git
@@ -21,11 +34,6 @@ antigen bundle caarlos0/zsh-open-pr
 if [[ `uname` == 'Linux' ]]; then # Linux (probably arch linux)
         antigen bundle archlinux
         antigen bundle systemd
-        # aura functions
-        aupg() {
-            sudo aura -Syu --noconfirm && sudo aura -Ayux --noconfirm
-        }
-
         eval $(keychain --eval --agents ssh -Q --quiet id_rsa)
 elif [[ `uname` == 'Darwin' ]]; then # Mac OS X
         antigen bundle brew
@@ -58,15 +66,14 @@ ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 unsetopt AUTO_CD
 
-# Use homeshick
-source "$HOME/.homesick/repos/homeshick/homeshick.sh"
-fpath=($HOME/.homesick/repos/homeshick/completions $fpath)
-
 export LANG=en_US.UTF-8
 
 # Preferred editor
 export EDITOR='vim'
-bindkey -v
+# bindkey -v
+
+alias sshu="ssh -o \"UserKnownHostsFile /dev/null\""
+alias ls="ls --color=auto"
 
 export PATH="$PATH:$HOME/.composer/vendor/bin"
 
@@ -78,15 +85,5 @@ bindkey '^?' backward-delete-char
 bindkey '^h' backward-delete-char
 bindkey '^w' backward-kill-word
 bindkey '^r' history-incremental-search-backward
-
-function zle-line-init zle-keymap-select {
-    VIM_PROMPT="%{$fg_bold[yellow]%} [% NORMAL]%  %{$reset_color%}"
-    RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/} $EPS1"
-    zle reset-prompt
-}
-
-zle -N zle-line-init
-zle -N zle-keymap-select
-export KEYTIMEOUT=1
 
 export TERM=screen-256color
