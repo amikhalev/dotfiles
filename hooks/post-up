@@ -1,16 +1,12 @@
 #!/bin/sh
 
+source $HOME/.zshenv
+
 # Grab all git submodules (mostly for antigen)
 git submodule update --init --recursive
 
 # Install zsh bundles
 zsh -c "source $HOME/.zshbundles && antigen apply"
-
-# Install dein.vim if not already installed
-DEIN_PATH=$HOME/.vim/dein/repos/github.com/Shougo/dein.vim
-if [ ! -e "$DEIN_PATH" ]; then
-    git clone https://github.com/Shougo/dein.vim $DEIN_PATH
-fi
 
 # Set up neovim config symlinks
 NVIM_CONFIG=${XDG_CONFIG_HOME:-$HOME/.config/}/nvim
@@ -19,3 +15,12 @@ mkdir -p $NVIM_CONFIG
 if [ ! -e "$NVIM_INIT" ]; then
     ln -s $HOME/.vimrc $NVIM_INIT
 fi
+
+# Install dein.vim if not already installed
+DEIN_PATH=$HOME/.vim/dein/repos/github.com/Shougo/dein.vim
+if [ ! -e "$DEIN_PATH" ]; then
+    git clone https://github.com/Shougo/dein.vim $DEIN_PATH
+fi
+
+# Installs all dein plugins
+$EDITOR -c "call dein#install() | qa"
