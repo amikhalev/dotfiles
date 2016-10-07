@@ -12,3 +12,10 @@ if [ ! -e "$DEIN_PATH" ]; then
     git clone https://github.com/Shougo/dein.vim $DEIN_PATH
 fi
 
+# Set up neovim config symlinks
+NVIM_CONFIG=${XDG_CONFIG_HOME:-$HOME/.config/}/nvim
+NVIM_INIT=$NVIM_CONFIG/init.vim
+mkdir -p $NVIM_CONFIG
+if [ ! -e "$NVIM_INIT" ]; then
+    ln -s $HOME/.vimrc $NVIM_INIT
+fi
