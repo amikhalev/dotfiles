@@ -61,7 +61,7 @@ call dein#add('rust-lang/rust.vim')
 " \   'build' : 'sh -s "git submodule update --init --recursive && ./install.py"'
 " \ })
 call dein#add('Shougo/vimproc.vim', {
-\   'build' : ':VimProcInstall',
+\   'build' : 'make',
 \ })
 
 call dein#add('vim-scripts/javacomplete')
