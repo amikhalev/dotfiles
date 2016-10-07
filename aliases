@@ -1,0 +1,5 @@
+alias sshu="ssh -o \"UserKnownHostsFile /dev/null\""
+alias ls="ls --color=auto"
+
+alias gping="ping 8.8.8.8"
+

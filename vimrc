@@ -2,67 +2,73 @@
 " Alex Mikhalev's nice vimrc
 " 
 
+" Misc. {{{
 scriptencoding utf-8
-" NeoBundle {{{
+if has('vim_starting')
+    set encoding=utf-8
+endif
+
+filetype plugin indent on
+
+set hidden
+" }}}
+" dein.vim {{{
 set nocompatible	" Puts the im in VIm
 filetype off
 
-" Initialize NeoBundle
-set rtp+=~/.vim/bundle/neobundle.vim
-call neobundle#begin(expand('~/.vim/bundle/'))
+" Initialize dein.vim
+set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
+call dein#begin(expand('~/.vim/dein/')) " Plugin root path
 
-NeoBundleFetch 'Shougo/neobundle.vim'
+call dein#add('Shougo/dein.vim')
 
-" Place all 'NeoBundle's here
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'sjl/gundo.vim'
-NeoBundle 'rking/ag.vim'
-NeoBundle 'bling/vim-airline'
-NeoBundle 'edkolev/tmuxline.vim'
+" Place all dien plugins here
 
-NeoBundle 'tpope/vim-commentary'
-NeoBundle 'tpope/vim-dispatch'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'tpope/vim-repeat'
-NeoBundle 'tpope/vim-projectionist'
+call dein#add('sjl/gundo.vim')
+call dein#add('rking/ag.vim')
+call dein#add('vim-airline/vim-airline')
+call dein#add('vim-airline/vim-airline-themes')
+" Maitainer needs to merge a PR that fixes an issue status-utf8 in new tmux
+" versions. Until then, use a fork
+" call dein#add('edkolev/tmuxline.vim')
+call dein#add('zeorin/tmuxline.vim', { 'rev': 'utf8-suppress-error'} )
 
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'syngan/vim-vimlint'
-NeoBundle 'syngan/vim-vimlparser'
-NeoBundle 'MarcWeber/vim-addon-mw-utils'
-NeoBundle 'tomtom/tlib_vim'
-NeoBundle 'kien/ctrlp.vim'
-NeoBundle 'Yggdroot/indentLine'
-NeoBundle 'Raimondi/delimitMate'
-NeoBundle 'Lokaltog/vim-easymotion'
-NeoBundle 'godlygeek/tabular'
-NeoBundle 'tfnico/vim-gradle'
-NeoBundle 'majutsushi/tagbar'
-NeoBundle 'edkolev/promptline.vim'
-NeoBundle 'lukerandall/haskellmode-vim'
-NeoBundle 'rust-lang/rust.vim'
+call dein#add('tpope/vim-commentary')
+call dein#add('tpope/vim-dispatch')
+call dein#add('tpope/vim-fugitive')
+call dein#add('tpope/vim-surround')
+call dein#add('tpope/vim-repeat')
+call dein#add('tpope/vim-projectionist')
 
-" NeoBundle 'phildawes/racer', {
-"             \   'build' : {
-"             \     'mac': 'cargo build --release',
-"             \     'unix': 'cargo build --release',
-"             \   }
-"             \ }
-NeoBundle 'Valloric/YouCompleteMe', {
-    \ 'build'      : {
-        \ 'mac'     : './install.sh --clang-completer --system-libclang --omnisharp-completer',
-        \ 'unix'    : './install.sh --clang-completer --system-libclang --omnisharp-completer'
-    \ }
-\ }
+call dein#add('scrooloose/syntastic')
+call dein#add('syngan/vim-vimlint')
+call dein#add('syngan/vim-vimlparser')
+call dein#add('Yggdroot/indentLine')
+call dein#add('Raimondi/delimitMate')
+" call dein#add('Lokaltog/vim-easymotion')
+call dein#add('godlygeek/tabular')
+call dein#add('tfnico/vim-gradle')
+call dein#add('majutsushi/tagbar')
+" call dein#add('edkolev/promptline.vim')
+call dein#add('lukerandall/haskellmode-vim')
+call dein#add('rust-lang/rust.vim')
 
-NeoBundle 'vim-scripts/javacomplete'
-NeoBundle 'SirVer/ultisnips'
-NeoBundle 'honza/vim-snippets'
+" call dein#add('phildawes/racer', {
+" \   'if' : executable('cargo'),
+" \   'build' : 'cargo build --release'
+" \ })
+" call dein#add('Valloric/YouCompleteMe', {
+" \   'build' : 'sh -s "git submodule update --init --recursive && ./install.py"'
+" \ })
+call dein#add('Shougo/vimproc.vim', {
+\   'build' : ':VimProcInstall',
+\ })
 
-call neobundle#end()
+call dein#add('vim-scripts/javacomplete')
+call dein#add('SirVer/ultisnips')
+call dein#add('honza/vim-snippets')
 
-NeoBundleCheck
+call dein#end()
 
 " }}}
 " Plugin configs {{{
@@ -80,18 +86,18 @@ let g:UltiSnipsEditSplit = "verticle"
 let g:indentLine_char = '│'
 
 " Tabular
-source ~/.vim/bundle/tabular/after/plugin/TabularMaps.vim
+"source ~/.vim/bundle/tabular/after/plugin/TabularMaps.vim
 
 " Tagbar
 let g:tagbar_iconchars = ['+', '-']
 
 " Airline
-set laststatus=2
+"set laststatus=2
 let g:airline_powerline_fonts=1
 let g:airline_theme='powerlineish'
-let g:airline_left_sep=''
-let g:airline_right_sep=''
-let g:airline_section_z=''
+"let g:airline_left_sep=''
+"let g:airline_right_sep=''
+"let g:airline_section_z=''
 " tab line
 let g:airline#extensions#tabline#enabled = 1
 
@@ -102,15 +108,7 @@ let g:haddock_browser = "/usr/bin/chromium"
 let g:EclimCompletionMethod = 'omnifunc'
 
 " }}}
-" Misc. {{{
-set encoding=utf-8
-filetype plugin indent on
-
-set hidden
-" }}}
 " UI {{{
-set guifont=Inconsolata\ for\ Powerline:h15
-set t_Co=256
 set mouse=a
 colorscheme desert " Some nice colors
 
@@ -185,8 +183,8 @@ nmap <leader>P      "+P
 vmap <leader>p      "+p
 vmap <leader>P      "+P
 map <leader><space> :nohlsearch<CR>
-map <leader>pi      :PluginInstall<CR>
-map <leader>pu      :PluginInstall!<CR>
+map <leader>pi      :call dein#install()<CR>
+map <leader>pu      :call dein#update()<CR>
 map <leader>pc      :PluginClean<CR>
 map <leader>tf      :NERDTreeToggle<CR>
 map <leader>tt      :TagbarToggle<CR>
