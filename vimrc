@@ -31,7 +31,7 @@ call dein#add('vim-airline/vim-airline-themes')
 " Maitainer needs to merge a PR that fixes an issue status-utf8 in new tmux
 " versions. Until then, use a fork
 " call dein#add('edkolev/tmuxline.vim')
-call dein#add('zeorin/tmuxline.vim', { 'rev': 'utf8-suppress-error'} )
+" call dein#add('zeorin/tmuxline.vim', { 'rev': 'utf8-suppress-error'} )
 
 call dein#add('tpope/vim-commentary')
 call dein#add('tpope/vim-dispatch')
