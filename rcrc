@@ -1,1 +1,2 @@
+EXCLUDES="antigen"
 DOTFILES_DIRS="$HOME/.dotfiles"

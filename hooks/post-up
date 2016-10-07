@@ -1,5 +1,7 @@
+#!/bin/sh
+
 # Grab all git submodules (mostly for antigen)
-git submodule pull --init --recursive
+git submodule update --init --recursive
 
 # Install dein.vim if not already installed
 DEIN_PATH=$HOME/.vim/dein/repos/github.com/Shougo/dein.vim
