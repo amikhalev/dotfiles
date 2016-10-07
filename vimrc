@@ -93,8 +93,8 @@ let g:tagbar_iconchars = ['+', '-']
 
 " Airline
 "set laststatus=2
-let g:airline_powerline_fonts=1
-let g:airline_theme='powerlineish'
+let g:airline_powerline_fonts=0
+let g:airline_theme='papercolor'
 "let g:airline_left_sep=''
 "let g:airline_right_sep=''
 "let g:airline_section_z=''
