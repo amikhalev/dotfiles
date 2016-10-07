@@ -3,6 +3,9 @@
 # Grab all git submodules (mostly for antigen)
 git submodule update --init --recursive
 
+# Install zsh bundles
+zsh -c "source $HOME/.zshbundles && antigen apply"
+
 # Install dein.vim if not already installed
 DEIN_PATH=$HOME/.vim/dein/repos/github.com/Shougo/dein.vim
 if [ ! -e "$DEIN_PATH" ]; then
