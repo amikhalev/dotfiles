@@ -10,5 +10,5 @@ bindkey '^h' backward-delete-char
 bindkey '^w' backward-kill-word
 bindkey '^r' history-incremental-search-backward
 
-[[ `uname` == 'Linux' ]] && eval $(keychain --eval --agents ssh -Q --quiet id_rsa)
+command -v keychain 1>/dev/null && eval $(keychain --eval --agents ssh -Q --quiet id_rsa)
 export TERM=xterm
