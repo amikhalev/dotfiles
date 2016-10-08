@@ -73,8 +73,8 @@ call dein#end()
 " }}}
 " Plugin configs {{{
 
-" NERDTree
-let g:NERDTreeDirArrows = 1
+" Netrw
+let g:netrw_preview=1
 
 " UltiSnips
 let g:UltiSnipsExpandTrigger = "<c-j>"
@@ -195,7 +195,7 @@ map <leader>tp      :tabprev<CR>
 map <leader>bn      :bn<CR>
 map <leader>bp      :bp<CR>
 map <leader>bs      :buffers<CR>
-map <leader>bd      :bd<CR>
+map <leader>bd      :bp \| bd #<CR>
 map <leader>bb      :buffers<CR>:buffer<Space>
 map <leader>dm      :Make<CR>
 map <leader>db      :Make!<CR>
@@ -227,4 +227,10 @@ autocmd Filetype *.rs let b:dispatch="cargo run"
 
 " }}}
 " Custom functions {{{
+
+" Makes the current file executable
+function! MakeExec()
+    call system('chmod +x ' . shellescape(@%))
+endfunction
+
 " }}}
