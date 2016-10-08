@@ -1,9 +1,9 @@
 #!/bin/sh
 
-source $HOME/.zshenv
+. $HOME/.zshenv
 
 # Grab all git submodules (mostly for antigen)
-git submodule update --init --recursive
+cd `dirname $0` && git submodule update --init --recursive
 
 # Install zsh bundles
 zsh -c "source $HOME/.zshbundles && antigen apply"
