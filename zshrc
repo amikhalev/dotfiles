@@ -1,13 +1,12 @@
-source $HOME/.zshbundles
-antigen apply
+#
+# Sources all files in $ZSHRC_DIR
+#
 
-source $HOME/.aliases
+export ZSHRC_DIR=${ZSHRC_DIR:=$HOME/.zshrc.d}
 
-bindkey '^P' up-history
-bindkey '^N' down-history
-bindkey '^?' backward-delete-char
-bindkey '^h' backward-delete-char
-bindkey '^w' backward-kill-word
-bindkey '^r' history-incremental-search-backward
+setopt localoptions extendedglob
 
-command -v keychain 1>/dev/null && eval $(keychain --eval --agents ssh -Q --quiet id_rsa)
+for config in "$ZSHRC_DIR"/*.*sh; do
+    . $config || { echo "Startup script at '$config' returned failure status code $?"; }
+done
+
