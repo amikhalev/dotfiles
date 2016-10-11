@@ -1,5 +1,5 @@
 #!/usr/bin/env zsh
-# Global functions
+# Global functions/variables
 #
 
 has_command() {
@@ -9,3 +9,4 @@ has_command() {
 path() {
     tr -s ':' '\n' <<<$PATH
 }
+
