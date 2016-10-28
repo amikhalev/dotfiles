@@ -228,10 +228,4 @@ autocmd Filetype *.rs let b:dispatch="cargo run"
 
 " }}}
 " Custom functions {{{
-
-" Makes the current file executable
-function! MakeExec()
-    call system('chmod +x ' . shellescape(@%))
-endfunction
-
 " }}}
