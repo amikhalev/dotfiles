@@ -7,6 +7,7 @@ zstyle ':completion:*:' cache-path $ZSH_CACHE_DIR/zcompcache
 
 autoload -U +X bashcompinit;
 
-compinit -d $ZSH_CACHE_DIR/zcompdump
+export ANTIGEN_COMPDUMPFILE=$ZSH_CACHE_DIR/zcompdump
+# compinit -d 
 bashcompinit
 

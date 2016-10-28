@@ -39,6 +39,7 @@ call dein#add('tpope/vim-fugitive')
 call dein#add('tpope/vim-surround')
 call dein#add('tpope/vim-repeat')
 call dein#add('tpope/vim-projectionist')
+call dein#add('tpope/vim-eunuch')
 
 call dein#add('scrooloose/syntastic')
 call dein#add('syngan/vim-vimlint')
