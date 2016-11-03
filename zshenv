@@ -13,3 +13,5 @@ export PATH="$PATH:$GOBIN:$HOME/.cargo/bin"
 export ZSHRC_DIR=$HOME/.zshrc.d
 export ZSH_CACHE_DIR=${XDG_CACHE_DIR:-$HOME/.cache}/zsh
 mkdir -p $ZSH_CACHE_DIR
+
+[ -e $HOME/.zshenv.local ] && source $HOME/.zshenv.local
