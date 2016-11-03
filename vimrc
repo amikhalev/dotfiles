@@ -28,6 +28,7 @@ call dein#add('sjl/gundo.vim')
 call dein#add('rking/ag.vim')
 call dein#add('vim-airline/vim-airline')
 call dein#add('vim-airline/vim-airline-themes')
+call dein#add('Shougo/unite.vim')
 " Maitainer needs to merge a PR that fixes an issue status-utf8 in new tmux
 " versions. Until then, use a fork
 " call dein#add('edkolev/tmuxline.vim')
@@ -49,6 +50,7 @@ call dein#add('Raimondi/delimitMate')
 " call dein#add('Lokaltog/vim-easymotion')
 call dein#add('godlygeek/tabular')
 call dein#add('tfnico/vim-gradle')
+call dein#add('fatih/vim-go')
 call dein#add('majutsushi/tagbar')
 " call dein#add('edkolev/promptline.vim')
 call dein#add('lukerandall/haskellmode-vim')
@@ -107,6 +109,20 @@ let g:haddock_browser = "/usr/bin/chromium"
 
 " eclim
 let g:EclimCompletionMethod = 'omnifunc'
+
+" Syntastic
+let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+
+" Go
+let g:go_list_type = "quickfix"
+
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_types = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
 
 " }}}
 " UI {{{
@@ -174,7 +190,7 @@ inoremap  jk       <ESC>
 " }}}
 " Leader mappings {{{
 map <leader>r       :redraw!<CR>
-map <leader>o       :CtrlP<CR>
+map <leader>o       :Unite file buffer<CR>
 map <leader>w       :w<CR>
 map <leader>sv      :so ~/.vimrc<CR>
 vmap <leader>y      "+y
@@ -186,13 +202,18 @@ vmap <leader>P      "+P
 map <leader><space> :nohlsearch<CR>
 map <leader>pi      :call dein#install()<CR>
 map <leader>pu      :call dein#update()<CR>
-map <leader>pc      :PluginClean<CR>
+map <leader>pl      :echom dein#get_log()<CR>
 map <leader>tf      :NERDTreeToggle<CR>
 map <leader>tt      :TagbarToggle<CR>
 map <leader>tc      :tabnew<CR>
 map <leader>tx      :tabclose<CR>
 map <leader>tn      :tabnext<CR>
 map <leader>tp      :tabprev<CR>
+map <C-b>n          :bn<CR>
+map <C-b>p          :bp<CR>
+map <C-b>s          :buffers<CR>
+map <C-b>d          :bp \| bd #<CR>
+map <C-b>b          :buffers<CR>:buffer<Space>
 map <leader>bn      :bn<CR>
 map <leader>bp      :bp<CR>
 map <leader>bs      :buffers<CR>
@@ -226,6 +247,13 @@ autocmd Filetype *.hs compiler ghc
 " rust
 autocmd Filetype *.rs let b:dispatch="cargo run"
 
-" }}}
-" Custom functions {{{
+" 2 space indentation for json/javascript
+autocmd Filetype javascript setlocal tabstop=2 shiftwidth=2
+autocmd Filetype json setlocal tabstop=2 shiftwidth=2
+
+" Go
+autocmd Filetype go nmap <leader>gr :GoRename<CR>
+autocmd Filetype go nmap <leader>gc :SyntasticCheck errcheck<CR>
+autocmd Filetype go nmap <leader>gl :SyntasticCheck<CR>
+
 " }}}
