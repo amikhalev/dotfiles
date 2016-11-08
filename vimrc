@@ -55,6 +55,7 @@ call dein#add('majutsushi/tagbar')
 " call dein#add('edkolev/promptline.vim')
 call dein#add('lukerandall/haskellmode-vim')
 call dein#add('rust-lang/rust.vim')
+call dein#add('cespare/vim-toml')
 
 " call dein#add('phildawes/racer', {
 " \   'if' : executable('cargo'),
@@ -123,6 +124,11 @@ let g:go_highlight_fields = 1
 let g:go_highlight_types = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
+
+" Rust
+if executable('rustc')
+    let g:ycm_rust_src_path = system("echo $(rustc --print sysroot)/lib/rustlib/src/rust/src")
+endif
 
 " }}}
 " UI {{{
