@@ -56,14 +56,15 @@ call dein#add('majutsushi/tagbar')
 call dein#add('lukerandall/haskellmode-vim')
 call dein#add('rust-lang/rust.vim')
 call dein#add('cespare/vim-toml')
+call dein#add('radenling/vim-dispatch-neovim')
 
 " call dein#add('phildawes/racer', {
 " \   'if' : executable('cargo'),
 " \   'build' : 'cargo build --release'
 " \ })
-call dein#add('Valloric/YouCompleteMe', {
-\   'build' : 'sh -s "git submodule update --init --recursive && ./install.py"'
-\ })
+call dein#add('Valloric/YouCompleteMe') " , {
+"\   'build' : 'sh -s "git submodule update --init --recursive && ./install.py"'
+"\ })
 call dein#add('Shougo/vimproc.vim', {
 \   'build' : 'make',
 \ })
@@ -251,7 +252,7 @@ autocmd Filetype java setlocal completefunc=javacomplete#CompleteParamsInfo
 autocmd Filetype *.hs compiler ghc
 
 " rust
-autocmd Filetype *.rs let b:dispatch="cargo run"
+autocmd Filetype *.rs compiler cargo
 
 " 2 space indentation for json/javascript
 autocmd Filetype javascript setlocal tabstop=2 shiftwidth=2
