@@ -24,6 +24,7 @@ if [[ `uname` == 'Linux' ]]; then # Linux (probably arch linux)
         antigen bundle archlinux
         antigen bundle systemd
 elif [[ `uname` == 'Darwin' ]]; then # Mac OS X
+        antigen bundle osx
         antigen bundle brew
 fi
 
