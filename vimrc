@@ -96,6 +96,20 @@ let g:indentLine_char = '│'
 " Tagbar
 let g:tagbar_iconchars = ['+', '-']
 
+let g:tagbar_type_rust = {
+    \ 'ctagstype' : 'rust',
+    \ 'kinds' : [
+        \'T:types,type definitions',
+        \'f:functions,function definitions',
+        \'g:enum,enumeration names',
+        \'s:structure names',
+        \'m:modules,module names',
+        \'c:consts,static constants',
+        \'t:traits,traits',
+        \'i:impls,trait implementations',
+    \]
+    \}
+
 " Airline
 "set laststatus=2
 let g:airline_powerline_fonts=0
@@ -114,7 +128,13 @@ let g:EclimCompletionMethod = 'omnifunc'
 
 " Syntastic
 let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+let g:syntastic_rust_checkers = ['rustc']
 let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 " Go
 let g:go_list_type = "quickfix"
@@ -128,7 +148,7 @@ let g:go_highlight_build_constraints = 1
 
 " Rust
 if executable('rustc')
-    let g:ycm_rust_src_path = system("echo $(rustc --print sysroot)/lib/rustlib/src/rust/src")
+    let g:ycm_rust_src_path = substitute(system('rustc --print sysroot'), '\n\+$', '', '') . '/lib/rustlib/src/rust/src'
 endif
 
 " }}}
@@ -247,7 +267,7 @@ autocmd Filetype java setlocal completefunc=javacomplete#CompleteParamsInfo
 autocmd Filetype *.hs compiler ghc
 
 " rust
-autocmd Filetype *.rs compiler cargo
+autocmd Filetype rust compiler cargo
 
 " 2 space indentation for json/javascript
 autocmd Filetype javascript setlocal tabstop=2 shiftwidth=2
