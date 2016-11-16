@@ -28,7 +28,7 @@ call dein#add('sjl/gundo.vim')
 call dein#add('rking/ag.vim')
 call dein#add('vim-airline/vim-airline')
 call dein#add('vim-airline/vim-airline-themes')
-call dein#add('Shougo/unite.vim')
+call dein#add('Shougo/denite.nvim')
 " Maitainer needs to merge a PR that fixes an issue status-utf8 in new tmux
 " versions. Until then, use a fork
 " call dein#add('edkolev/tmuxline.vim')
@@ -166,17 +166,12 @@ set foldmethod=syntax
 set wildmenu
 set wildmode=list:longest,full
 
-" CtrlP use ag and git
-let g:ctrlp_use_caching = 0
+" Denite
 if executable('ag')
-    set grepprg=ag\ --nogroup\ --nocolor
+    set grepprg=ag\ --follow\ --nogroup\ --nocolor
 
-    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-else
-    let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
-    let g:ctrlp_prompt_mappings = {
-                \ 'AcceptSelection("e")': ['<space>', '<cr>', '<2-LeftMouse>'],
-                \ }
+    call denite#custom#var('file_rec', 'command',
+                \ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
 endif
 
 " }}}
@@ -197,7 +192,7 @@ inoremap  jk       <ESC>
 " }}}
 " Leader mappings {{{
 map <leader>r       :redraw!<CR>
-map <leader>o       :Unite file buffer<CR>
+map <leader>o       :Denite file_rec buffer<CR>
 map <leader>w       :w<CR>
 map <leader>sv      :so ~/.vimrc<CR>
 vmap <leader>y      "+y
