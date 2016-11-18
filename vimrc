@@ -245,15 +245,16 @@ map <leader>dm      :Make<CR>
 map <leader>db      :Make!<CR>
 map <leader>dd      :Dispatch<CR>
 map <leader>ds      :Start<CR>
-map <leader>dc      :Copen<CR>
+map <leader>co      :Copen<CR>
+map <leader>cc      :cclose<CR>
+map <leader>cn      :cnext<CR>
+map <leader>cp      :cprevious<CR>
 map <leader>ev      :e ~/.vimrc<CR>
 map <leader>et      :e ~/.tmux.conf<CR>
 map <leader>em      :e ./Makefile<CR>
 map <leader>ep      :e ./.projections.json<CR>
 map <leader>sc      :wa \| SyntasticCheck \| Errors<CR>
 map <leader>se      :Errors<CR>
-map <leader>cn      :cnext<CR>
-map <leader>cp      :cprevious<CR>
 " }}}
 " AutoCmds {{{
 " Close vim if the last window is NERDTree
@@ -268,10 +269,14 @@ autocmd Filetype *.hs compiler ghc
 
 " rust
 autocmd Filetype rust compiler cargo
+autocmd Filetype rust nmap <leader>cb :Make build<CR>
+autocmd Filetype rust nmap <leader>ct :Make test<CR>
+autocmd Filetype rust nmap <leader>cr :Start run<CR>
 
-" 2 space indentation for json/javascript
+" 2 space indentation for json, javascript, ruby
 autocmd Filetype javascript setlocal tabstop=2 shiftwidth=2
 autocmd Filetype json setlocal tabstop=2 shiftwidth=2
+autocmd Filetype ruby setlocal tabstop=2 shiftwidth=2
 
 " Go
 autocmd Filetype go nmap <leader>gr :GoRename<CR>
