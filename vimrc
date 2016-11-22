@@ -212,7 +212,7 @@ inoremap  jk       <ESC>
 " }}}
 " Leader mappings {{{
 map <leader>r       :redraw!<CR>
-map <leader>o       :Denite file_rec buffer<CR>
+map <leader>o       :Denite buffer file_rec<CR>
 map <leader>w       :w<CR>
 map <leader>sv      :so ~/.vimrc<CR>
 vmap <leader>y      "+y
