@@ -271,7 +271,7 @@ autocmd Filetype *.hs compiler ghc
 autocmd Filetype rust compiler cargo
 autocmd Filetype rust nmap <leader>cb :Make build<CR>
 autocmd Filetype rust nmap <leader>ct :Make test<CR>
-autocmd Filetype rust nmap <leader>cr :Start run<CR>
+autocmd Filetype rust nmap <leader>cr :Start cargo run<CR>
 
 " 2 space indentation for json, javascript, ruby
 autocmd Filetype javascript setlocal tabstop=2 shiftwidth=2
