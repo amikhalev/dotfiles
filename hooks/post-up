@@ -6,7 +6,9 @@
 cd `dirname $0` && git submodule update --init --recursive
 
 # Install zsh bundles
-. $ZSHRC_DIR/10-antigen-bundles.sh && antigen apply
+. $HOME/.dotfiles/zgen/zgen.zsh
+zgen reset
+. $ZSHRC_DIR/10-zgen.sh
 
 # Set up neovim config symlinks
 NVIM_CONFIG=${XDG_CONFIG_HOME:-$HOME/.config/}/nvim
