@@ -19,6 +19,7 @@ if ! zgen saved; then
     # zgen load peterhurford/git-it-on.zsh
     zgen load supercrabtree/k
     # zgen load caarlos0/zsh-open-pr
+    zgen load creationix/nvm nvm.sh
 
     # Package manager plugins
     if [[ `uname` == 'Linux' ]]; then # Linux (probably arch linux)

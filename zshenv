@@ -10,6 +10,8 @@ export GOPATH="$HOME/Programming/go"
 export GOBIN="$GOPATH/bin"
 export PATH="$PATH:$GOBIN:$HOME/.cargo/bin"
 
+export NVM_DIR=$HOME/.nvm
+
 export ZSHRC_DIR=$HOME/.zshrc.d
 export ZSH_CACHE_DIR=${XDG_CACHE_DIR:-$HOME/.cache}/zsh
 mkdir -p $ZSH_CACHE_DIR
