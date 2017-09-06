@@ -8,72 +8,77 @@ if has('vim_starting')
     set encoding=utf-8
 endif
 
-filetype plugin indent on
-
 set hidden
 " }}}
 " dein.vim {{{
-set nocompatible	" Puts the im in VIm
+if &compatible
+    set nocompatible	" Puts the im in VIm
+endif
 filetype off
 
 " Initialize dein.vim
 set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
-call dein#begin(expand('~/.vim/dein/')) " Plugin root path
 
-call dein#add('Shougo/dein.vim')
+if dein#load_state('~/.vim/dein/') " Plugin root path
+    call dein#begin('~/.vim/dein')
+    call dein#add('Shougo/dein.vim')
 
-" Place all dien plugins here
+    " Place all plugins here
 
-call dein#add('sjl/gundo.vim')
-call dein#add('rking/ag.vim')
-call dein#add('vim-airline/vim-airline')
-call dein#add('vim-airline/vim-airline-themes')
-call dein#add('Shougo/denite.nvim')
-" Maitainer needs to merge a PR that fixes an issue status-utf8 in new tmux
-" versions. Until then, use a fork
-" call dein#add('edkolev/tmuxline.vim')
-" call dein#add('zeorin/tmuxline.vim', { 'rev': 'utf8-suppress-error'} )
+    call dein#add('sjl/gundo.vim')
+    call dein#add('rking/ag.vim')
+    call dein#add('vim-airline/vim-airline')
+    call dein#add('vim-airline/vim-airline-themes')
+    call dein#add('Shougo/denite.nvim')
+    " Maitainer needs to merge a PR that fixes an issue status-utf8 in new tmux
+    " versions. Until then, use a fork
+    " call dein#add('edkolev/tmuxline.vim')
+    " call dein#add('zeorin/tmuxline.vim', { 'rev': 'utf8-suppress-error'} )
 
-call dein#add('tpope/vim-commentary')
-call dein#add('tpope/vim-dispatch')
-call dein#add('tpope/vim-fugitive')
-call dein#add('tpope/vim-surround')
-call dein#add('tpope/vim-repeat')
-call dein#add('tpope/vim-projectionist')
-call dein#add('tpope/vim-eunuch')
+    call dein#add('tpope/vim-commentary')
+    call dein#add('tpope/vim-dispatch')
+    call dein#add('tpope/vim-fugitive')
+    call dein#add('tpope/vim-surround')
+    call dein#add('tpope/vim-repeat')
+    call dein#add('tpope/vim-projectionist')
+    call dein#add('tpope/vim-eunuch')
 
-call dein#add('scrooloose/syntastic')
-call dein#add('syngan/vim-vimlint')
-call dein#add('syngan/vim-vimlparser')
-call dein#add('Yggdroot/indentLine')
-call dein#add('Raimondi/delimitMate')
-" call dein#add('Lokaltog/vim-easymotion')
-call dein#add('godlygeek/tabular')
-call dein#add('tfnico/vim-gradle')
-call dein#add('fatih/vim-go')
-call dein#add('majutsushi/tagbar')
-" call dein#add('edkolev/promptline.vim')
-call dein#add('lukerandall/haskellmode-vim')
-call dein#add('rust-lang/rust.vim')
-call dein#add('cespare/vim-toml')
-call dein#add('radenling/vim-dispatch-neovim')
+    call dein#add('scrooloose/syntastic')
+    call dein#add('syngan/vim-vimlint')
+    call dein#add('syngan/vim-vimlparser')
+    call dein#add('Yggdroot/indentLine')
+    call dein#add('Raimondi/delimitMate')
+    " call dein#add('Lokaltog/vim-easymotion')
+    call dein#add('godlygeek/tabular')
+    call dein#add('tfnico/vim-gradle')
+    call dein#add('fatih/vim-go')
+    call dein#add('majutsushi/tagbar')
+    " call dein#add('edkolev/promptline.vim')
+    call dein#add('lukerandall/haskellmode-vim')
+    call dein#add('rust-lang/rust.vim')
+    call dein#add('cespare/vim-toml')
+    call dein#add('radenling/vim-dispatch-neovim')
 
-" call dein#add('phildawes/racer', {
-" \   'if' : executable('cargo'),
-" \   'build' : 'cargo build --release'
-" \ })
-" call dein#add('Valloric/YouCompleteMe') " , {
-"\   'build' : 'sh -s "git submodule update --init --recursive && ./install.py"'
-"\ })
-call dein#add('Shougo/vimproc.vim', {
-\   'build' : 'make',
-\ })
+    " call dein#add('phildawes/racer', {
+    " \   'if' : executable('cargo'),
+    " \   'build' : 'cargo build --release'
+    " \ })
+    " call dein#add('Valloric/YouCompleteMe') " , {
+    "\   'build' : 'sh -s "git submodule update --init --recursive && ./install.py"'
+    "\ })
+    call dein#add('Shougo/vimproc.vim', {
+    \   'build' : 'make',
+    \ })
 
-call dein#add('vim-scripts/javacomplete')
-call dein#add('SirVer/ultisnips')
-call dein#add('honza/vim-snippets')
+    call dein#add('vim-scripts/javacomplete')
+    call dein#add('SirVer/ultisnips')
+    call dein#add('honza/vim-snippets')
 
-call dein#end()
+    call dein#end()
+    call dein#save_state()
+endif
+
+filetype plugin indent on
 
 " }}}
 " Plugin configs {{{
@@ -224,7 +229,7 @@ vmap <leader>P      "+P
 map <leader><space> :nohlsearch<CR>
 map <leader>pi      :call dein#install()<CR>
 map <leader>pu      :call dein#update()<CR>
-map <leader>pl      :echom dein#get_log()<CR>
+map <leader>pl      :echo dein#get_log()<CR>
 map <leader>tf      :NERDTreeToggle<CR>
 map <leader>tt      :TagbarToggle<CR>
 map <leader>tc      :tabnew<CR>
