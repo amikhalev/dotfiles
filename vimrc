@@ -62,7 +62,7 @@ call dein#add('radenling/vim-dispatch-neovim')
 " \   'if' : executable('cargo'),
 " \   'build' : 'cargo build --release'
 " \ })
-call dein#add('Valloric/YouCompleteMe') " , {
+" call dein#add('Valloric/YouCompleteMe') " , {
 "\   'build' : 'sh -s "git submodule update --init --recursive && ./install.py"'
 "\ })
 call dein#add('Shougo/vimproc.vim', {
