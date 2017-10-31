@@ -20,6 +20,7 @@ if ! zgen saved; then
     zgen load supercrabtree/k
     # zgen load caarlos0/zsh-open-pr
     zgen load creationix/nvm nvm.sh
+    zgen load greymd/docker-zsh-completion
 
     # Package manager plugins
     if [[ `uname` == 'Linux' ]]; then # Linux (probably arch linux)
