@@ -4,7 +4,6 @@
 [push]
 	default = simple
 [core]
-	editor = vim
 [alias]
     co = checkout
     c = commit
