@@ -23,3 +23,4 @@ if [[ ( $PROFILE_STARTUP ) ]]; then
     exec 2>&3 3>&-
     echo "Wrote startlog to $STARTLOG"
 fi
+
