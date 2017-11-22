@@ -1,0 +1,10 @@
+Host alex-desktop
+    HostName alex-desktop.lan
+    User alex
+    IdentityFile ~/.ssh/id_rsa
+
+Host RouterMain
+    HostName RouterMain.local
+    User root
+    IdentityFile ~/.ssh/id_rsa
+
