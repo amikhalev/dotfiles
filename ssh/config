@@ -1,3 +1,5 @@
+AddKeysToAgent yes
+
 Host alex-desktop
     HostName alex-desktop.lan
     User alex
@@ -8,3 +10,14 @@ Host RouterMain
     User root
     IdentityFile ~/.ssh/id_rsa
 
+Host RouterBridge
+    HostName RouterBridge.local
+    User root
+    IdentityFile ~/.ssh/id_rsa
+
+Host Alexs-MBP
+    HostName Alexs-MBP.local
+    User alex
+    IdentityFile ~/.ssh/id_rsa
+
+Include config.local
