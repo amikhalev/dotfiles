@@ -1,2 +1,2 @@
-EXCLUDES="antigen install.sh"
+EXCLUDES="install.sh"
 DOTFILES_DIRS="$HOME/.dotfiles"

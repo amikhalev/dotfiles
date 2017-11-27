@@ -10,6 +10,14 @@ cd `dirname $0` && git submodule update --init --recursive
 zgen reset
 . $DOTFILES_DIRS/zshrc.d/10_zgen.sh
 
+# Install vim-plug if not already installed
+VIMPLUG=$HOME/.vim/autoload/plug.vim
+if [ ! -f "$VIMPLUG" ]; then
+    echo Downloading vim-plug
+    curl -fLo $VIMPLUG --create-dirs \
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+fi
+
 # Set up neovim config symlinks
 NVIM_CONFIG=${XDG_CONFIG_HOME:-$HOME/.config/}/nvim
 NVIM_INIT=$NVIM_CONFIG/init.vim
@@ -17,12 +25,9 @@ mkdir -p $NVIM_CONFIG
 if [ ! -e "$NVIM_INIT" ]; then
     ln -s $HOME/.vimrc $NVIM_INIT
 fi
-
-# Install vim-plug if not already installed
-VIMPLUG=$HOME/.vim/autoload/plug.vim
-if [ ! -f "$VIMPLUG" ]; then
-    curl -fLo $VIMPLUG --create-dirs \
-        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+mkdir -p $NVIM_CONFIG/autoload
+if [ ! -e "$NVIM_CONFIG/autoload/plug.vim" ]; then
+    ln -s $HOME/.vim/autoload/plug.vim $NVIM_CONFIG/autoload/plug.vim
 fi
 
 # Update vim-plug and install plugins

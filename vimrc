@@ -52,13 +52,19 @@ Plug ('tpope/vim-eunuch')
 
 " Plug ('SirVer/ultisnips')
 " Plug ('honza/vim-snippets')
-"
+
+if has('nvim')
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+    Plug 'Shougo/deoplete.nvim'
+endif
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 
 " Language plugins
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 Plug 'Quramy/tsuquyomi', { 'for': 'typescript' }
+Plug 'digitaltoad/vim-pug', { 'for': 'pug' }
 " Plug ('rust-lang/rust.vim')
 " Plug ('cespare/vim-toml')
 " Plug ('tfnico/vim-gradle')
@@ -145,6 +151,9 @@ if executable('rustc')
     let g:ycm_rust_src_path = substitute(system('rustc --print sysroot'), '\n\+$', '', '') . '/lib/rustlib/src/rust/src'
 endif
 
+" Typescript
+let g:tsuquyomi_completion_detail = 1
+
 " }}}
 " UI {{{
 set mouse=a
@@ -187,6 +196,11 @@ if executable('ag')
     " call denite#custom#var('file_rec', 'command',
     "             \ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
 endif
+
+" Deoplete
+let g:deoplete#enable_at_startup = 1
+
+
 
 " }}}
 " Regular mappings {{{
@@ -255,8 +269,6 @@ map <leader>se      :Errors<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " javacomplete
-autocmd Filetype java setlocal omnifunc=javacomplete#Complete
-autocmd Filetype java setlocal completefunc=javacomplete#CompleteParamsInfo
 
 " haskellmode
 autocmd Filetype *.hs compiler ghc
@@ -272,9 +284,16 @@ autocmd Filetype javascript setlocal tabstop=2 shiftwidth=2
 autocmd Filetype json setlocal tabstop=2 shiftwidth=2
 autocmd Filetype ruby setlocal tabstop=2 shiftwidth=2
 
-" Go
 autocmd Filetype go nmap <leader>gr :GoRename<CR>
 autocmd Filetype go nmap <leader>gc :SyntasticCheck errcheck<CR>
 autocmd Filetype go nmap <leader>gl :SyntasticCheck<CR>
+
+augroup omnifuncs
+    autocmd!
+    autocmd Filetype java setlocal omnifunc=javacomplete#Complete
+    autocmd Filetype java setlocal completefunc=javacomplete#CompleteParamsInfo
+    autocmd Filetype typescript setlocal omnifunc=tsuquyomi#complete
+    autocmd Filetype typescript setlocal completeopt+=preview
+augroup end
 
 " }}}

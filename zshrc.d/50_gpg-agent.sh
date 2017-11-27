@@ -7,7 +7,7 @@ GNUPGHOME=$(gpgconf --list-dir homedir)
 export GPG_TTY=$(tty)
 
 if ! pgrep gpg-agent 1>/dev/null; then
-    gpgconf --launch gpg-agent &
+    gpgconf --launch gpg-agent &|
 fi
 
 # Set SSH to use gpg-agent if it is configured to do so

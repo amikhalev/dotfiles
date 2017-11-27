@@ -2,6 +2,7 @@
 # All zgen bundles for zsh
 #
 
+ZGEN_CUSTOM_COMPDUMP="$ZSH_CACHE_DIR/zcompdump"
 source $HOME/.dotfiles/zgen/zgen.zsh
 
 if ! zgen saved; then
@@ -17,7 +18,6 @@ if ! zgen saved; then
     # Other plugins
     zgen load unixorn/autoupdate-zgen # update zgen + plugins every 7 days
     zgen load supercrabtree/k
-    zgen load creationix/nvm nvm.sh
     zgen load greymd/docker-zsh-completion
 
     # Package manager plugins
