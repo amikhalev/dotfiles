@@ -1,6 +1,10 @@
+if ! which gpg-agent 1>/dev/null; then
+    return
+fi
+
 GNUPGHOME=$(gpgconf --list-dir homedir)
 
-GPG_TTY=$(tty)
+export GPG_TTY=$(tty)
 
 if ! pgrep gpg-agent 1>/dev/null; then
     gpgconf --launch gpg-agent &

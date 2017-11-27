@@ -2,25 +2,31 @@
 # Sources all files in $ZSHRC_DIR
 #
 
-setopt localoptions extendedglob
+load_all() {
+    setopt localoptions extendedglob
 
-if [[ ( $PROFILE_STARTUP ) ]]; then
-    STARTLOG=$HOME/startlog.$$
-    PS4=$'\\\011%D{%s%6.}\011%x\011%I\011%N\011%e\011'
-    exec 3>&2 2>$STARTLOG
-    setopt xtrace prompt_subst
-fi
+    local profile=$( [[ "$PROFILE_STARTUP" = (1|true) ]] && echo true || echo false )
 
-for config in "$ZSHRC_DIR"/*.*sh; do
-    if [[ ( $PROFILE_STARTUP ) ]]; then
-        echo "Loading $config"
+    if $profile; then
+        STARTLOG=$HOME/startlog.$$
+        PS4=$'\\\011%D{%s%6.}\011%x\011%I\011%N\011%e\011'
+        exec 3>&2 2>$STARTLOG
+        setopt xtrace prompt_subst
     fi
-    source $config || { echo "Startup script at '$config' returned failure status code $?"; }
-done
 
-if [[ ( $PROFILE_STARTUP ) ]]; then
-    unsetopt xtrace
-    exec 2>&3 3>&-
-    echo "Wrote startlog to $STARTLOG"
-fi
+    for config in "$1"/*.*sh; do
+        if $profile; then
+            echo "Sourcing $config"
+        fi
+        source $config || { echo "Startup script at '$config' returned failure status code $?"; }
+    done
+
+    if $profile; then
+        unsetopt xtrace
+        exec 2>&3 3>&-
+        echo "Wrote startlog to $STARTLOG"
+    fi
+}
+
+load_all $ZSHRC_DIR
 

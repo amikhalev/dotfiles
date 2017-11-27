@@ -1,4 +1,6 @@
+#
 # Global functions/variables
+#
 
 mkdir -p $ZSH_CACHE_DIR
 

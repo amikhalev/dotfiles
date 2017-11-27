@@ -1,7 +1,7 @@
 # zsh specific config
-export ZSHRC_DIR="$HOME/.zshrc.d"
-export ZSH_CACHE_DIR="${XDG_CACHE_DIR:-$HOME/.cache}/zsh"
-export HISTFILE="$ZSH_CACHE_DIR/histfile"
+ZSHRC_DIR="$HOME/.zshrc.d"
+ZSH_CACHE_DIR="${XDG_CACHE_DIR:-$HOME/.cache}/zsh"
+HISTFILE="$ZSH_CACHE_DIR/histfile"
 
 # editor
 find_editor() {
@@ -41,8 +41,8 @@ export FZF_HOME="$HOME/.fzf"
 [ -e $FZF_HOME ] && PATH="$PATH:$FZF_HOME/bin"
 
 # misc
-export DOTFILES_DIRS="$HOME/.dotfiles"
-export NVM_DIR="$HOME/.nvm"
+DOTFILES_DIRS="$HOME/.dotfiles"
+NVM_DIR="$HOME/.nvm"
 
 [ -e $HOME/.zshenv.local ] && source $HOME/.zshenv.local
 

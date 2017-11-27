@@ -3,7 +3,7 @@
 
 # If fzf doesn't exist, stop
 if [[ ! -e $FZF_HOME ]]; then
-    exit 0
+    return
 fi
 
 # Auto-completion
