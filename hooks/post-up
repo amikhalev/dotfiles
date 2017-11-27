@@ -6,9 +6,9 @@
 cd `dirname $0` && git submodule update --init --recursive
 
 # Install zsh bundles
-. $HOME/.dotfiles/zgen/zgen.zsh
+. $DOTFILES_DIR/zgen/zgen.zsh
 zgen reset
-. $ZSHRC_DIR/10-zgen.sh
+. $ZSHRC_DIR/10_zgen.sh
 
 # Set up neovim config symlinks
 NVIM_CONFIG=${XDG_CONFIG_HOME:-$HOME/.config/}/nvim
@@ -18,11 +18,13 @@ if [ ! -e "$NVIM_INIT" ]; then
     ln -s $HOME/.vimrc $NVIM_INIT
 fi
 
-# Install dein.vim if not already installed
-DEIN_PATH=$HOME/.vim/dein/repos/github.com/Shougo/dein.vim
-if [ ! -e "$DEIN_PATH" ]; then
-    git clone https://github.com/Shougo/dein.vim $DEIN_PATH
+# Install vim-plug if not already installed
+VIMPLUG=$HOME/.vim/autoload/plug.vim
+if [ ! -f "$VIMPLUG" ]; then
+    curl -fLo $VIMPLUG --create-dirs \
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
 
-# Installs all dein plugins
-$EDITOR -c "call dein#install() | qa"
+# Update vim-plug and install plugins
+$EDITOR -c "PlugUpgrade | PlugUpdate | qa"
+

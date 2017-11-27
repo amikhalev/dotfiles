@@ -15,11 +15,8 @@ if ! zgen saved; then
     zgen oh-my-zsh plugins/pass
 
     # Other plugins
-    zgen load zsh-users/zsh-completions src
-    # zgen load arialdomartini/oh-my-git
-    # zgen load peterhurford/git-it-on.zsh
+    zgen load unixorn/autoupdate-zgen # update zgen + plugins every 7 days
     zgen load supercrabtree/k
-    # zgen load caarlos0/zsh-open-pr
     zgen load creationix/nvm nvm.sh
     zgen load greymd/docker-zsh-completion
 
@@ -35,9 +32,11 @@ if ! zgen saved; then
     # Theme
     zgen load nojhan/liquidprompt
 
-    # Syntax highlighting must be last
+    # These must be in this order
     zgen load zsh-users/zsh-syntax-highlighting
+    zgen load zsh-users/zsh-history-substring-search
+    zgen load zsh-users/zsh-completions src
 
     zgen save
-
 fi
+

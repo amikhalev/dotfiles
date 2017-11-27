@@ -11,72 +11,61 @@ endif
 set hidden
 " }}}
 " dein.vim {{{
-if &compatible
-    set nocompatible	" Puts the im in VIm
-endif
-filetype off
 
-" Initialize dein.vim
-set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
+" Initialize vim-plug
+call plug#begin('~/.vim/plugged')
 
-if dein#load_state('~/.vim/dein/') " Plugin root path
-    call dein#begin('~/.vim/dein')
-    call dein#add('Shougo/dein.vim')
+" Place all plugins here
 
-    " Place all plugins here
+" Plug ('sjl/gundo.vim')
+" Plug ('rking/ag.vim')
+Plug ('vim-airline/vim-airline')
+Plug ('vim-airline/vim-airline-themes')
 
-    call dein#add('sjl/gundo.vim')
-    call dein#add('rking/ag.vim')
-    call dein#add('vim-airline/vim-airline')
-    call dein#add('vim-airline/vim-airline-themes')
-    call dein#add('Shougo/denite.nvim')
-    " Maitainer needs to merge a PR that fixes an issue status-utf8 in new tmux
-    " versions. Until then, use a fork
-    " call dein#add('edkolev/tmuxline.vim')
-    " call dein#add('zeorin/tmuxline.vim', { 'rev': 'utf8-suppress-error'} )
+Plug ('tpope/vim-commentary')
+Plug ('tpope/vim-dispatch')
+Plug ('tpope/vim-fugitive')
+Plug ('tpope/vim-surround')
+Plug ('tpope/vim-repeat')
+" Plug ('tpope/vim-projectionist')
+Plug ('tpope/vim-eunuch')
 
-    call dein#add('tpope/vim-commentary')
-    call dein#add('tpope/vim-dispatch')
-    call dein#add('tpope/vim-fugitive')
-    call dein#add('tpope/vim-surround')
-    call dein#add('tpope/vim-repeat')
-    call dein#add('tpope/vim-projectionist')
-    call dein#add('tpope/vim-eunuch')
+" Plug ('scrooloose/syntastic')
+" Plug ('syngan/vim-vimlint')
+" Plug ('syngan/vim-vimlparser')
+" Plug ('Yggdroot/indentLine')
+" Plug ('Raimondi/delimitMate')
+" Plug ('Lokaltog/vim-easymotion')
+" Plug ('godlygeek/tabular')
+" Plug ('majutsushi/tagbar')
+" Plug ('edkolev/promptline.vim')
+" Plug ('lukerandall/haskellmode-vim')
+" Plug ('radenling/vim-dispatch-neovim')
 
-    call dein#add('scrooloose/syntastic')
-    call dein#add('syngan/vim-vimlint')
-    call dein#add('syngan/vim-vimlparser')
-    call dein#add('Yggdroot/indentLine')
-    call dein#add('Raimondi/delimitMate')
-    " call dein#add('Lokaltog/vim-easymotion')
-    call dein#add('godlygeek/tabular')
-    call dein#add('tfnico/vim-gradle')
-    call dein#add('fatih/vim-go')
-    call dein#add('majutsushi/tagbar')
-    " call dein#add('edkolev/promptline.vim')
-    call dein#add('lukerandall/haskellmode-vim')
-    call dein#add('rust-lang/rust.vim')
-    call dein#add('cespare/vim-toml')
-    call dein#add('radenling/vim-dispatch-neovim')
+" Plug ('phildawes/racer', {
+" \   'if' : executable('cargo'),
+" \   'build' : 'cargo build --release'
+" \ })
+" Plug ('Valloric/YouCompleteMe') " , {
+"\   'build' : 'sh -s "git submodule update --init --recursive && ./install.py"'
+"\ })
 
-    " call dein#add('phildawes/racer', {
-    " \   'if' : executable('cargo'),
-    " \   'build' : 'cargo build --release'
-    " \ })
-    " call dein#add('Valloric/YouCompleteMe') " , {
-    "\   'build' : 'sh -s "git submodule update --init --recursive && ./install.py"'
-    "\ })
-    call dein#add('Shougo/vimproc.vim', {
-    \   'build' : 'make',
-    \ })
+" Plug ('SirVer/ultisnips')
+" Plug ('honza/vim-snippets')
+"
+Plug 'Shougo/vimproc.vim', { 'do': 'make' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 
-    call dein#add('vim-scripts/javacomplete')
-    call dein#add('SirVer/ultisnips')
-    call dein#add('honza/vim-snippets')
+" Language plugins
+Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
+Plug 'Quramy/tsuquyomi', { 'for': 'typescript' }
+" Plug ('rust-lang/rust.vim')
+" Plug ('cespare/vim-toml')
+" Plug ('tfnico/vim-gradle')
+" Plug ('fatih/vim-go')
+" Plug ('vim-scripts/javacomplete')
 
-    call dein#end()
-    call dein#save_state()
-endif
+call plug#end()
 
 filetype plugin indent on
 
@@ -195,8 +184,8 @@ set wildmode=list:longest,full
 if executable('ag')
     set grepprg=ag\ --follow\ --nogroup\ --nocolor
 
-    call denite#custom#var('file_rec', 'command',
-                \ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
+    " call denite#custom#var('file_rec', 'command',
+    "             \ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
 endif
 
 " }}}
@@ -227,9 +216,9 @@ nmap <leader>P      "+P
 vmap <leader>p      "+p
 vmap <leader>P      "+P
 map <leader><space> :nohlsearch<CR>
-map <leader>pi      :call dein#install()<CR>
-map <leader>pu      :call dein#update()<CR>
-map <leader>pl      :echo dein#get_log()<CR>
+map <leader>pi      :PlugInstall<CR>
+map <leader>pu      :PlugUpdate<CR>
+" map <leader>pl      :echo dein#get_log()<CR>
 map <leader>tf      :NERDTreeToggle<CR>
 map <leader>tt      :TagbarToggle<CR>
 map <leader>tc      :tabnew<CR>

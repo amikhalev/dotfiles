@@ -16,3 +16,5 @@ NVM="$HOME/.zgen/creationix/nvm-master/nvm.sh"
 
 [ -e $HOME/.bashrc.local ] && source $HOME/.bashrc.local
 
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
