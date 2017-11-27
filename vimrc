@@ -55,6 +55,7 @@ Plug ('tpope/vim-eunuch')
 
 if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'mhartington/nvim-typescript', { 'do': ':UpdateRemotePlugins' }
 else
     Plug 'Shougo/deoplete.nvim'
 endif
@@ -63,7 +64,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 
 " Language plugins
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
-Plug 'Quramy/tsuquyomi', { 'for': 'typescript' }
+"Plug 'Quramy/tsuquyomi', { 'for': 'typescript' }
 Plug 'digitaltoad/vim-pug', { 'for': 'pug' }
 " Plug ('rust-lang/rust.vim')
 " Plug ('cespare/vim-toml')
@@ -199,8 +200,19 @@ endif
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
+if !exists('g:deoplete#omni#input_patterns')
+  let g:deoplete#omni#input_patterns = {}
+endif
+" let g:deoplete#complete_method = 'omnifunc'
+let g:deoplete#enable_refresh_always = 1
+let g:deoplete#enable_camel_case = 1
+let g:deoplete#disable_auto_complete = 1
+imap <silent><expr> <TAB>
+            \ pumvisible() ? "\<C-n>" :
+            \ deoplete#mappings#manual_complete()
+inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<C-h>"
 
-
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " }}}
 " Regular mappings {{{
