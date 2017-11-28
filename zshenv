@@ -3,6 +3,7 @@ ZSHRC_DIR="$HOME/.zshrc.d"
 ZSH_CACHE_DIR="${XDG_CACHE_DIR:-$HOME/.cache}/zsh"
 ZSH_COMPDUMP="$ZSH_CACHE_DIR/zcompdump"
 HISTFILE="$ZSH_CACHE_DIR/histfile"
+export ZPLUG_HOME="$HOME/.zplug"
 
 # editor
 find_editor() {
@@ -43,11 +44,6 @@ export FZF_HOME="$HOME/.fzf"
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
-export NVM_NODE_GLOBAL="$NVM_DIR/versions/node/global"
-if [ -e $NVM_NODE_GLOBAL ]; then
-    PATH="$NVM_NODE_GLOBAL/bin:$PATH"
-    MANPATH="$NVM_NODE_GLOBAL/share/man:$MANPATH"
-fi
 
 # misc
 DOTFILES_DIRS="$HOME/.dotfiles"

@@ -2,13 +2,20 @@
 
 . $HOME/.zshenv
 
-# Grab all git submodules (mostly for antigen)
+# Grab all git submodules
 cd `dirname $0` && git submodule update --init --recursive
 
+# Install zplug if not already installed
+ZPLUG_ROOT=$ZPLUG_HOME/repos/zplug/zplug
+if [ ! -d "$ZPLUG_ROOT" ]; then
+    echo Downloading zplug
+    git clone https://github.com/zplug/zplug $ZPLUG_HOME
+fi
+
 # Install zsh bundles
-. $DOTFILES_DIRS/zgen/zgen.zsh
-zgen reset
-. $DOTFILES_DIRS/zshrc.d/10_zgen.zsh
+. $ZPLUG_HOME/init.zsh
+. $DOTFILES_DIRS/zshrc.d/10_zplug.zsh
+zplug update
 
 # Install vim-plug if not already installed
 VIMPLUG=$HOME/.vim/autoload/plug.vim

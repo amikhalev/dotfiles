@@ -21,6 +21,7 @@ call plug#begin('~/.vim/plugged')
 " Plug ('rking/ag.vim')
 Plug ('vim-airline/vim-airline')
 Plug ('vim-airline/vim-airline-themes')
+Plug 'dracula/vim'
 
 Plug ('tpope/vim-commentary')
 Plug ('tpope/vim-dispatch')
@@ -161,7 +162,7 @@ let g:tsuquyomi_completion_detail = 1
 " }}}
 " UI {{{
 set mouse=a
-colorscheme desert " Some nice colors
+silent! colorscheme dracula " Some nice colors
 
 syntax enable      " That nice syntax highlighting
 
