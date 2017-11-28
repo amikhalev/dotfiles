@@ -42,7 +42,6 @@ _zsh_nvm_load() {
 _zsh_nvm_create_funs() {
     local cmds=("${@}")
     for cmd in $cmds; do
-echo "creating nvm cmd '$cmd'"
         # When called, unset all lazy loaders, load nvm then run current command
         eval "$cmd(){
             unset -f $cmds > /dev/null 2>&1
