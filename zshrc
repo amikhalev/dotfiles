@@ -2,9 +2,7 @@
 # Loads zsh config by sourcing all files in $ZSHRC_DIR
 #
 
-_ZSHRC_IS_PROFILE=$( [[ "$PROFILE_STARTUP" = (1|true) ]] && echo true || echo false ) 
-
-_ZSHRC_IS_DEBUG=$( [[ "$DEBUG" = (1|true) ]] || $_ZSHRC_IS_PROFILE && echo true || echo false )
+_ZSHRC_IS_DEBUG=$( [[ "$DEBUG" = (1|true) ]] && echo true || echo false )
 
 if $_ZSHRC_IS_DEBUG; then
     _zshrc_debug() {
@@ -15,25 +13,22 @@ else
     }
 fi
 
-setopt localoptions extendedglob
+if [ -d "$ZPLUG_HOME" ]; then
+    source "$ZPLUG_HOME/init.zsh"
 
-if $_ZSHRC_IS_PROFILE; then
-    _zshrc_debug Starting startup profiling
-    STARTLOG=$HOME/startlog.$$
-    PS4=$'\\\011%D{%s%6.}\011%x\011%I\011%N\011%e\011'
-    exec 3>&2 2>$STARTLOG
-    setopt xtrace prompt_subst
-fi
+    # Install plugins if there are plugins that have not been installed
+    if ! zplug check --verbose; then
+        printf "Install out of date plugins? [y/N]: "
+        if read -q; then
+            echo
+            zplug install
+        fi
+    fi
 
-for config in "$ZSHRC_DIR"/*.zsh; do
-    _zshrc_debug "Sourcing $config"
-    source $config || { echo "Startup script at '$config' returned failure status code $?"; }
-done
-
-if $_ZSHRC_IS_PROFILE; then
-    unsetopt xtrace
-    exec 2>&3 3>&-
-    _zshrc_debug "Wrote startlog to $STARTLOG"
+    # Then, source plugins and add commands to $PATH
+    zplug load $($_ZSHRC_IS_DEBUG && echo "--verbose")
+else
+    echo "WARN: zplug is not installed"
 fi
 
 unfunction _zshrc_debug

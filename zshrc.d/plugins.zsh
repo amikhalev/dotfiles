@@ -2,13 +2,13 @@
 # All zplug plugins
 #
 
-[ -d "$ZPLUG_HOME" ] && source "$ZPLUG_HOME/init.zsh" || \
-    { echo "zplug is not installed"; return 1 }
-
+# Manage zplug
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 
+# Load defined zshrc.d files
+zplug "~/.zshrc.d", from:local, use:"<->_*.zsh"
+
 # oh-my-zsh plugins
-zplug "robbyrussell/oh-my-zsh", use:"lib/*.zsh"
 zplug "plugins/git", from:oh-my-zsh
 zplug "plugins/sudo", from:oh-my-zsh
 zplug "plugins/pip", from:oh-my-zsh
@@ -16,7 +16,7 @@ zplug "plugins/pass", from:oh-my-zsh
 zplug "plugins/docker", from:oh-my-zsh
 
 # Other plugins
-#zplug "supercrabtree/k"
+zplug "supercrabtree/k"
 #zplug "junegunn/fzf-bin", \
 #    from:gh-r, \
 #    as:command, \
@@ -32,27 +32,16 @@ elif [[ `uname` == 'Darwin' ]]; then # Mac OS X
 fi
 
 # Theme
-zplug "nojhan/liquidprompt"
+# zplug "nojhan/liquidprompt"
 # zplug mafredri/zsh-async, from:github
 # zplug intelfx/pure, use:pure.zsh, from:github, as:theme
 # zplug themes/funky, from:oh-my-zsh, as:theme
 # zplug denysdovhan/spaceship-zsh-theme, use:spaceship.zsh, from:github, as:theme
-# zplug "dracula/zsh", from:github, as:theme
+zplug "dracula/zsh", from:github, as:theme
 
 # These must be last
-zplug "zsh-users/zsh-syntax-highlighting", defer:2
-zplug "zsh-users/zsh-history-substring-search", defer:2
-zplug "zsh-users/zsh-completions", use:src, defer:2
-zplug "lukechilds/zsh-better-npm-completion", defer:2
-
-# Install plugins if there are plugins that have not been installed
-if ! zplug check --verbose; then
-    printf "Install out of date plugins? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
-fi
-
-# Then, source plugins and add commands to $PATH
-zplug load $($_ZSHRC_IS_DEBUG && echo "--verbose")
+zplug "zsh-users/zsh-syntax-highlighting", defer:3
+zplug "zsh-users/zsh-history-substring-search", defer:3
+zplug "zsh-users/zsh-completions"
+zplug "lukechilds/zsh-better-npm-completion"
 

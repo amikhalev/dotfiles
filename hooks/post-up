@@ -14,7 +14,6 @@ fi
 
 # Install zsh bundles
 . $ZPLUG_HOME/init.zsh
-. $DOTFILES_DIRS/zshrc.d/10_zplug.zsh
 zplug update
 
 # Install vim-plug if not already installed

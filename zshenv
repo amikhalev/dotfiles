@@ -1,9 +1,11 @@
 # zsh specific config
-ZSHRC_DIR="$HOME/.zshrc.d"
-ZSH_CACHE_DIR="${XDG_CACHE_DIR:-$HOME/.cache}/zsh"
+ZPLUG_HOME="$HOME/.zplug"
+ZPLUG_LOADFILE="$HOME/.zshrc.d/plugins.zsh"
+ZSH_CACHE_DIR="$ZPLUG_HOME"
 ZSH_COMPDUMP="$ZSH_CACHE_DIR/zcompdump"
 HISTFILE="$ZSH_CACHE_DIR/histfile"
-export ZPLUG_HOME="$HOME/.zplug"
+export DOTFILES_DIRS="$HOME/.dotfiles"
+export DOTFILES="$DOTFILES_DIRS"
 
 # editor
 find_editor() {
@@ -44,9 +46,6 @@ export FZF_HOME="$HOME/.fzf"
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
-
-# misc
-DOTFILES_DIRS="$HOME/.dotfiles"
 
 [ -e $HOME/.zshenv.local ] && source $HOME/.zshenv.local
 
