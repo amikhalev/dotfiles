@@ -7,6 +7,9 @@ HISTFILE="$ZSH_CACHE_DIR/histfile"
 export DOTFILES_DIRS="$HOME/.dotfiles"
 export DOTFILES="$DOTFILES_DIRS"
 
+# misc
+export CLICOLOR=1
+
 # editor
 find_editor() {
     local ed
