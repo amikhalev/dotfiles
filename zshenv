@@ -1,6 +1,7 @@
 # zsh specific config
 ZSHRC_DIR="$HOME/.zshrc.d"
 ZSH_CACHE_DIR="${XDG_CACHE_DIR:-$HOME/.cache}/zsh"
+ZSH_COMPDUMP="$ZSH_CACHE_DIR/zcompdump"
 HISTFILE="$ZSH_CACHE_DIR/histfile"
 
 # editor

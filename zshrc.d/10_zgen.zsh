@@ -2,7 +2,7 @@
 # All zgen bundles for zsh
 #
 
-ZGEN_CUSTOM_COMPDUMP="$ZSH_CACHE_DIR/zcompdump"
+ZGEN_CUSTOM_COMPDUMP=$ZSH_COMPDUMP
 source $HOME/.dotfiles/zgen/zgen.zsh
 
 if ! zgen saved; then
