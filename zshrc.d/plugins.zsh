@@ -33,11 +33,9 @@ fi
 
 # Theme
 # zplug "nojhan/liquidprompt"
-# zplug mafredri/zsh-async, from:github
-# zplug intelfx/pure, use:pure.zsh, from:github, as:theme
-# zplug themes/funky, from:oh-my-zsh, as:theme
-# zplug denysdovhan/spaceship-zsh-theme, use:spaceship.zsh, from:github, as:theme
-zplug "dracula/zsh", from:github, as:theme
+zplug mafredri/zsh-async, from:github
+zplug intelfx/pure, use:pure.zsh, from:github, as:theme
+# zplug "caiogondim/bullet-train.zsh", from:github, as:theme
 
 # These must be last
 zplug "zsh-users/zsh-syntax-highlighting", defer:3
