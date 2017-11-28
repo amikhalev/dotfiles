@@ -14,7 +14,7 @@ load_all() {
         setopt xtrace prompt_subst
     fi
 
-    for config in "$1"/*.*sh; do
+    for config in "$1"/*.zsh; do
         if $profile; then
             echo "Sourcing $config"
         fi

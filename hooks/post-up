@@ -8,7 +8,7 @@ cd `dirname $0` && git submodule update --init --recursive
 # Install zsh bundles
 . $DOTFILES_DIRS/zgen/zgen.zsh
 zgen reset
-. $DOTFILES_DIRS/zshrc.d/10_zgen.sh
+. $DOTFILES_DIRS/zshrc.d/10_zgen.zsh
 
 # Install vim-plug if not already installed
 VIMPLUG=$HOME/.vim/autoload/plug.vim

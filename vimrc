@@ -30,9 +30,7 @@ Plug ('tpope/vim-repeat')
 " Plug ('tpope/vim-projectionist')
 Plug ('tpope/vim-eunuch')
 
-" Plug ('scrooloose/syntastic')
-" Plug ('syngan/vim-vimlint')
-" Plug ('syngan/vim-vimlparser')
+Plug 'w0rp/ale'
 " Plug ('Yggdroot/indentLine')
 " Plug ('Raimondi/delimitMate')
 " Plug ('Lokaltog/vim-easymotion')
@@ -40,7 +38,7 @@ Plug ('tpope/vim-eunuch')
 " Plug ('majutsushi/tagbar')
 " Plug ('edkolev/promptline.vim')
 " Plug ('lukerandall/haskellmode-vim')
-" Plug ('radenling/vim-dispatch-neovim')
+Plug ('radenling/vim-dispatch-neovim')
 
 " Plug ('phildawes/racer', {
 " \   'if' : executable('cargo'),
@@ -56,11 +54,13 @@ Plug ('tpope/vim-eunuch')
 if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     Plug 'mhartington/nvim-typescript', { 'do': ':UpdateRemotePlugins' }
+    Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
 else
     Plug 'Shougo/deoplete.nvim'
 endif
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+" Plug 'junegunn/fzf.vim'
 
 " Language plugins
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
@@ -80,7 +80,12 @@ filetype plugin indent on
 " Plugin configs {{{
 
 " Netrw
-let g:netrw_preview=1
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_winsize = 16
+let g:netrw_preview = 1
 
 " UltiSnips
 let g:UltiSnipsExpandTrigger = "<c-j>"
@@ -127,15 +132,13 @@ let g:haddock_browser = "/usr/bin/chromium"
 " eclim
 let g:EclimCompletionMethod = 'omnifunc'
 
-" Syntastic
-let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
-let g:syntastic_rust_checkers = ['rustc']
-let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+" ALE
+let g:ale_linters = {
+            \    'typescript': ['tsserver', 'tslint'],
+            \}
+let g:ale_fixers = {
+            \    'typescript': ['tslint'],
+            \}
 
 " Go
 let g:go_list_type = "quickfix"
@@ -194,8 +197,8 @@ set wildmode=list:longest,full
 if executable('ag')
     set grepprg=ag\ --follow\ --nogroup\ --nocolor
 
-    " call denite#custom#var('file_rec', 'command',
-    "             \ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
+    call denite#custom#var('file_rec', 'command',
+                \ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
 endif
 
 " Deoplete
@@ -273,8 +276,7 @@ map <leader>ev      :e ~/.vimrc<CR>
 map <leader>et      :e ~/.tmux.conf<CR>
 map <leader>em      :e ./Makefile<CR>
 map <leader>ep      :e ./.projections.json<CR>
-map <leader>sc      :wa \| SyntasticCheck \| Errors<CR>
-map <leader>se      :Errors<CR>
+map <leader>lf      :ALEFix<CR>
 " }}}
 " AutoCmds {{{
 " Close vim if the last window is NERDTree
