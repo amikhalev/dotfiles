@@ -17,3 +17,5 @@ alias pgen="dd if=/dev/urandom bs=1 count=32 2>/dev/null | base64 | rev | cut -b
 alias vimrc="$EDITOR ~/.vimrc"
 alias vizrc="$EDITOR ~/.zshrc"
 alias vizpl="$EDITOR ~/.zshrc.d/plugins.zsh"
+
+alias szrc="source ~/.zshrc"
