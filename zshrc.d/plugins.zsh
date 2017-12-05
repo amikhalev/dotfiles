@@ -29,6 +29,7 @@ if [[ `uname` == 'Linux' ]]; then # Linux (probably arch linux)
     zplug "plugins/systemd", from:oh-my-zsh
 elif [[ `uname` == 'Darwin' ]]; then # Mac OS X
     zplug "plugins/osx", from:oh-my-zsh
+    zplug "/usr/local/share/zsh-completions", from:local
 fi
 
 # Theme
