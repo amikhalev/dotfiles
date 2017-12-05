@@ -3,7 +3,7 @@ source "$HOME/.shrc.d/01_functions.sh"
 export DOTFILES_DIRS="$HOME/.dotfiles"
 export DOTFILES="$DOTFILES_DIRS"
 
-if [ "$(uname)" = "Darwin" ]; then
+if [ `uname` = "Darwin" ]; then
     export CLICOLOR=1
 fi
 
@@ -13,7 +13,7 @@ find_editor() {
     # Set editor to the best vim available
     # PATH does not get set on macOS until /etc/zprofile is loaded, which is after zshenv, so for this temporarily
     # add entries to PATH
-    if [ "$(uname)" = "Darwin" ]; then
+    if [ `uname` = "Darwin" ]; then
         local PATH="$PATH:/usr/local/bin"
     fi
 
@@ -24,7 +24,7 @@ find_editor() {
     if [ $? != 0 ]; then 
         found_editor="$EDITOR" # if no vim (wtf?), keep current EDITOR
     fi
-    echo $ed
+    echo $found_editor
 }
 
 export EDITOR=`find_editor`
