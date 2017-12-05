@@ -1,9 +1,12 @@
+Include config.local
+
 AddKeysToAgent yes
 
 Host alex-desktop
     HostName alex-desktop.lan
     User alex
     IdentityFile ~/.ssh/id_rsa
+    ForwardAgent yes
 
 Host RouterMain
     HostName RouterMain.local
@@ -19,5 +22,9 @@ Host Alexs-MBP
     HostName Alexs-MBP.local
     User alex
     IdentityFile ~/.ssh/id_rsa
+    ForwardAgent yes
 
-Include config.local
+ControlMaster auto
+ControlPath /tmp/ssh_control_%h_%p_%r
+ControlPersist 2h
+
