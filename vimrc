@@ -32,7 +32,7 @@ Plug ('tpope/vim-repeat')
 Plug ('tpope/vim-eunuch')
 
 Plug 'w0rp/ale'
-" Plug ('Yggdroot/indentLine')
+Plug ('Yggdroot/indentLine')
 " Plug ('Raimondi/delimitMate')
 " Plug ('Lokaltog/vim-easymotion')
 " Plug ('godlygeek/tabular')
@@ -214,6 +214,8 @@ endif
 let g:deoplete#enable_refresh_always = 1
 let g:deoplete#enable_camel_case = 1
 let g:deoplete#disable_auto_complete = 1
+
+" deoplete tab-complete
 inoremap <silent><expr> <TAB>
             \ pumvisible() ? "\<C-n>" :
             \ <SID>check_back_space() ? "\<TAB>" :
@@ -221,7 +223,7 @@ inoremap <silent><expr> <TAB>
 function! s:check_back_space() abort "{{{
     let col = col('.') - 1
     return !col || getline('.')[col - 1]  =~ '\s'
-endfunction"}}}
+endfunction "}}}
 inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<C-h>"
 
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
@@ -315,7 +317,6 @@ augroup omnifuncs
     autocmd!
     autocmd Filetype java setlocal omnifunc=javacomplete#Complete
     autocmd Filetype java setlocal completefunc=javacomplete#CompleteParamsInfo
-    autocmd Filetype typescript setlocal omnifunc=tsuquyomi#complete
     autocmd Filetype typescript setlocal completeopt+=preview
 augroup end
 
