@@ -13,8 +13,7 @@ if [ ! -d "$ZPLUG_ROOT" ]; then
 fi
 
 # Install zsh bundles
-. $ZPLUG_HOME/init.zsh
-zplug update
+zsh -ic "zplug update" </dev/null
 
 # Install vim-plug if not already installed
 VIMPLUG=$HOME/.vim/autoload/plug.vim
@@ -37,5 +36,6 @@ if [ ! -e "$NVIM_CONFIG/autoload/plug.vim" ]; then
 fi
 
 # Update vim-plug and install plugins
-$EDITOR -c "PlugUpgrade | PlugUpdate | qa"
+which nvim 1>/dev/null && nvim -c "PlugUpgrade | PlugUpdate | qa"
+which vim 1>/dev/null && vim -c "PlugUpgrade | PlugUpdate | qa"
 
