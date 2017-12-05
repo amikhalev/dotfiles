@@ -2,6 +2,8 @@
 # Loads zsh config by sourcing all files in $ZSHRC_DIR
 #
 
+mkdir -p $ZSH_CACHE_DIR
+
 _ZSHRC_IS_DEBUG=$( [[ "$DEBUG" = (1|true) ]] && echo true || echo false )
 
 if $_ZSHRC_IS_DEBUG; then
