@@ -88,7 +88,7 @@ let g:netrw_banner = 0
 let g:netrw_liststyle = 3
 let g:netrw_browse_split = 4
 let g:netrw_altv = 1
-let g:netrw_winsize = 16
+let g:netrw_winsize = 20
 let g:netrw_preview = 1
 
 " UltiSnips
@@ -245,7 +245,9 @@ inoremap  jk       <ESC>
 
 " }}}
 " Leader mappings {{{
-map <leader>r       :redraw!<CR>
+map <leader>q       :q<CR>
+map <leader>w       :w<CR>
+map <leader>wq      :wq<CR>
 map <leader>o       :Denite buffer file_rec<CR>
 map <leader>w       :w<CR>
 map <leader>sv      :so ~/.vimrc<CR>
@@ -259,7 +261,7 @@ map <leader><space> :nohlsearch<CR>
 map <leader>pi      :PlugInstall<CR>
 map <leader>pu      :PlugUpdate<CR>
 " map <leader>pl      :echo dein#get_log()<CR>
-map <leader>tf      :NERDTreeToggle<CR>
+map <leader>tf      :20Lexplore<CR>
 map <leader>tt      :TagbarToggle<CR>
 map <leader>tc      :tabnew<CR>
 map <leader>tx      :tabclose<CR>
