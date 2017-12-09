@@ -17,37 +17,29 @@ call plug#begin('~/.vim/plugged')
 
 " Place all plugins here
 
-" Plug ('sjl/gundo.vim')
-" Plug ('rking/ag.vim')
-Plug ('vim-airline/vim-airline')
-Plug ('vim-airline/vim-airline-themes')
+Plug 'sjl/gundo.vim'
+Plug 'rking/ag.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'dracula/vim'
 
-Plug ('tpope/vim-commentary')
-Plug ('tpope/vim-dispatch')
-Plug ('tpope/vim-fugitive')
-Plug ('tpope/vim-surround')
-Plug ('tpope/vim-repeat')
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
 " Plug ('tpope/vim-projectionist')
-Plug ('tpope/vim-eunuch')
+Plug 'tpope/vim-eunuch'
 
 Plug 'w0rp/ale'
-Plug ('Yggdroot/indentLine')
+Plug 'Yggdroot/indentLine'
 " Plug ('Raimondi/delimitMate')
 " Plug ('Lokaltog/vim-easymotion')
-" Plug ('godlygeek/tabular')
-" Plug ('majutsushi/tagbar')
-" Plug ('edkolev/promptline.vim')
-" Plug ('lukerandall/haskellmode-vim')
-Plug ('radenling/vim-dispatch-neovim')
+Plug 'junegunn/vim-easy-align'
+Plug 'majutsushi/tagbar'
+Plug 'edkolev/promptline.vim'
+Plug 'radenling/vim-dispatch-neovim'
 
-" Plug ('phildawes/racer', {
-" \   'if' : executable('cargo'),
-" \   'build' : 'cargo build --release'
-" \ })
-" Plug ('Valloric/YouCompleteMe') " , {
-"\   'build' : 'sh -s "git submodule update --init --recursive && ./install.py"'
-"\ })
 
 " Plug ('SirVer/ultisnips')
 " Plug ('honza/vim-snippets')
@@ -63,18 +55,25 @@ else
     Plug 'Shougo/denite.nvim'
 endif
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
-" Plug 'junegunn/fzf.vim'
 
 " Language plugins
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 "Plug 'Quramy/tsuquyomi', { 'for': 'typescript' }
 Plug 'digitaltoad/vim-pug', { 'for': 'pug' }
+Plug 'zchee/deoplete-clang', { 'for': ['c', 'cpp'] }
 " Plug ('rust-lang/rust.vim')
 " Plug ('cespare/vim-toml')
 " Plug ('tfnico/vim-gradle')
 " Plug ('fatih/vim-go')
 " Plug ('vim-scripts/javacomplete')
+" Plug ('phildawes/racer', {
+" \   'if' : executable('cargo'),
+" \   'build' : 'cargo build --release'
+" \ })
+" Plug ('Valloric/YouCompleteMe') " , {
+"\   'build' : 'sh -s "git submodule update --init --recursive && ./install.py"'
+"\ })
+" Plug ('lukerandall/haskellmode-vim')
 
 call plug#end()
 
@@ -169,6 +168,10 @@ silent! colorscheme dracula " Some nice colors
 
 syntax enable      " That nice syntax highlighting
 
+if has("gui_running")
+    set guifont=Input\ Mono:h11,Inconsolata\ Awesome:h14,Menlo\ Regular:h12,Fira\ Code:h12
+endif
+
 " Indentation
 set smarttab
 set smartindent
@@ -215,6 +218,37 @@ let g:deoplete#enable_refresh_always = 1
 let g:deoplete#enable_camel_case = 1
 let g:deoplete#disable_auto_complete = 1
 
+if has('macunix')
+    let g:deoplete#sources#clang#libclang_path = '/Applications/Xcode.app/Contents/Frameworks/libclang.dylib'
+endif
+
+" }}}
+" Regular mappings {{{
+
+" Nicer leader
+let g:mapleader = "\<space>"
+
+" Better mobility
+nnoremap j gj
+nnoremap k gk
+nnoremap B ^
+nnoremap E $
+tnoremap <A-h> <C-\><C-N><C-w>h
+tnoremap <A-j> <C-\><C-N><C-w>j
+tnoremap <A-k> <C-\><C-N><C-w>k
+tnoremap <A-l> <C-\><C-N><C-w>l
+inoremap <A-h> <C-\><C-N><C-w>h
+inoremap <A-j> <C-\><C-N><C-w>j
+inoremap <A-k> <C-\><C-N><C-w>k
+inoremap <A-l> <C-\><C-N><C-w>l
+nnoremap <A-h> <C-w>h
+nnoremap <A-j> <C-w>j
+nnoremap <A-k> <C-w>k
+nnoremap <A-l> <C-w>l
+
+" ESC is so far away...
+inoremap  jk       <ESC>
+
 " deoplete tab-complete
 inoremap <silent><expr> <TAB>
             \ pumvisible() ? "\<C-n>" :
@@ -228,20 +262,9 @@ inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<C-h>"
 
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
-" }}}
-" Regular mappings {{{
-
-" Nicer leader
-let g:mapleader = "\<space>"
-
-" Better mobility
-nnoremap j gj
-nnoremap k gk
-nnoremap B ^
-nnoremap E $
-
-" ESC is so far away...
-inoremap  jk       <ESC>
+" vim-easy-align
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
 
 " }}}
 " Leader mappings {{{
@@ -263,6 +286,7 @@ map <leader>pu      :PlugUpdate<CR>
 " map <leader>pl      :echo dein#get_log()<CR>
 map <leader>tf      :20Lexplore<CR>
 map <leader>tt      :TagbarToggle<CR>
+map <leader>tl      :set relativenumber!<CR>
 map <leader>tc      :tabnew<CR>
 map <leader>tx      :tabclose<CR>
 map <leader>tn      :tabnext<CR>
@@ -285,11 +309,13 @@ map <leader>co      :Copen<CR>
 map <leader>cc      :cclose<CR>
 map <leader>cn      :cnext<CR>
 map <leader>cp      :cprevious<CR>
+map <leader>lf      :ALEFix<CR>
+map <leader>gs      :Gstatus<CR>
+map <leader>gc      :Gcommit -v<CR>
 map <leader>ev      :e ~/.vimrc<CR>
 map <leader>et      :e ~/.tmux.conf<CR>
 map <leader>em      :e ./Makefile<CR>
 map <leader>ep      :e ./.projections.json<CR>
-map <leader>lf      :ALEFix<CR>
 " }}}
 " AutoCmds {{{
 " Close vim if the last window is NERDTree

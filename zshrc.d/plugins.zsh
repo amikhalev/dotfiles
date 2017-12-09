@@ -18,11 +18,7 @@ zplug "plugins/vi-mode", from:oh-my-zsh
 
 # Other plugins
 zplug "supercrabtree/k"
-#zplug "junegunn/fzf-bin", \
-#    from:gh-r, \
-#    as:command, \
-#    rename-to:fzf, \
-#    use:"*darwin*amd64*"
+zplug "junegunn/fzf-bin", from:gh-r, as:command, rename-to:fzf
 
 # Package manager plugins
 if [[ `uname` == 'Linux' ]]; then # Linux (probably arch linux)
