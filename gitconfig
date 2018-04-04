@@ -5,7 +5,6 @@
 	default = simple
 [core]
 	editor = vim
-	autocrlf = true
 [alias]
     co = checkout
     c = commit
@@ -20,4 +19,6 @@
     mff = merge --ff-only
     rb = rebase
     rbi = rebase -i
+[include]
+    path = ~/.gitconfig.local
 
