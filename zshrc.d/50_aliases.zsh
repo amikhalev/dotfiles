@@ -10,6 +10,10 @@ updot() {
     cd -
 }
 
+if [[ `uname` = "Linux" ]]; then
+    alias ls='ls --color=auto'
+fi
+
 alias t="tail -f"
 
 alias pgen="dd if=/dev/urandom bs=1 count=32 2>/dev/null | base64 | rev | cut -b 2- | rev"
