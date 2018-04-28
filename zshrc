@@ -19,7 +19,7 @@ if [ -d "$ZPLUG_HOME" ]; then
     source "$ZPLUG_HOME/init.zsh"
 
     # Install plugins if there are plugins that have not been installed
-    if ! zplug check --verbose; then
+    if false && ! zplug check --verbose; then
         printf "Install out of date plugins? [y/N]: "
         if read -q; then
             echo

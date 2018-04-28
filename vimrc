@@ -28,25 +28,24 @@ Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
-" Plug ('tpope/vim-projectionist')
+Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-eunuch'
 
 Plug 'w0rp/ale'
 Plug 'Yggdroot/indentLine'
-" Plug ('Raimondi/delimitMate')
-" Plug ('Lokaltog/vim-easymotion')
+" " Plug 'Raimondi/delimitMate'
 Plug 'junegunn/vim-easy-align'
 Plug 'majutsushi/tagbar'
-Plug 'edkolev/promptline.vim'
+" Plug 'edkolev/promptline.vim'
 Plug 'radenling/vim-dispatch-neovim'
-
+Plug 'editorconfig/editorconfig-vim'
 
 " Plug ('SirVer/ultisnips')
 " Plug ('honza/vim-snippets')
 
 if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    Plug 'mhartington/nvim-typescript', { 'do': ':UpdateRemotePlugins' }
+    " Plug 'mhartington/nvim-typescript', { 'do': ':UpdateRemotePlugins' }
     Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
 else
     Plug 'roxma/nvim-yarp'
@@ -54,13 +53,13 @@ else
     Plug 'Shougo/deoplete.nvim'
     Plug 'Shougo/denite.nvim'
 endif
-Plug 'Shougo/vimproc.vim', { 'do': 'make' }
+" Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 
 " Language plugins
-Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
+Plug 'HerringtonDarkholme/yats.vim', { 'for': 'typescript' }
 "Plug 'Quramy/tsuquyomi', { 'for': 'typescript' }
 Plug 'digitaltoad/vim-pug', { 'for': 'pug' }
-Plug 'zchee/deoplete-clang', { 'for': ['c', 'cpp'] }
+" Plug 'zchee/deoplete-clang', { 'for': ['c', 'cpp'] }
 " Plug ('rust-lang/rust.vim')
 " Plug ('cespare/vim-toml')
 " Plug ('tfnico/vim-gradle')
@@ -128,6 +127,9 @@ let g:airline_theme='papercolor'
 "let g:airline_section_z=''
 " tab line
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_buffers = 1
+let g:airline#extensions#tabline#fnamecollapse = 0
+let g:airline#extensions#tabline#buffer_idx_mode = 1
 
 " haskellmode
 let g:haddock_browser = "/usr/bin/chromium"
@@ -142,6 +144,10 @@ let g:ale_linters = {
 let g:ale_fixers = {
             \    'typescript': ['tslint'],
             \}
+let g:ale_lint_on_text_changed = 'normal'
+let g:ale_lint_on_insert_leave = 1
+let g:ale_completion_enabled = 1
+let g:ale_set_quickfix = 1
 
 " Go
 let g:go_list_type = "quickfix"
@@ -261,6 +267,7 @@ function! s:check_back_space() abort "{{{
     return !col || getline('.')[col - 1]  =~ '\s'
 endfunction "}}}
 inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <silent><expr> <C-x><C-a> deoplete#mappings#manual_complete()
 
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
@@ -298,8 +305,17 @@ map <C-b>p          :bp<CR>
 map <C-b>s          :buffers<CR>
 map <C-b>d          :bp \| bd #<CR>
 map <C-b>b          :buffers<CR>:buffer<Space>
-map <leader>bn      :bn<CR>
-map <leader>bp      :bp<CR>
+map <leader>b1      <Plug>AirlineSelectTab1
+map <leader>b2      <Plug>AirlineSelectTab2
+map <leader>b3      <Plug>AirlineSelectTab3
+map <leader>b4      <Plug>AirlineSelectTab4
+map <leader>b5      <Plug>AirlineSelectTab5
+map <leader>b6      <Plug>AirlineSelectTab6
+map <leader>b7      <Plug>AirlineSelectTab7
+map <leader>b8      <Plug>AirlineSelectTab8
+map <leader>b9      <Plug>AirlineSelectTab9
+map <leader>bn      <Plug>AirlineSelectNextTab
+map <leader>bp      <Plug>AirlineSelectPrevTab
 map <leader>bs      :buffers<CR>
 map <leader>bd      :bp \| bd #<CR>
 map <leader>bb      :buffers<CR>:buffer<Space>
@@ -307,11 +323,13 @@ map <leader>dm      :Make<CR>
 map <leader>db      :Make!<CR>
 map <leader>dd      :Dispatch<CR>
 map <leader>ds      :Start<CR>
-map <leader>co      :Copen<CR>
+map <leader>co      :copen<CR>
 map <leader>cc      :cclose<CR>
 map <leader>cn      :cnext<CR>
 map <leader>cp      :cprevious<CR>
-map <leader>lf      :ALEFix<CR>
+map <leader>cl      :ALELint<CR>
+map <leader>cf      :ALEFix<CR>
+map <leader>cd      :ALEGoToDefinition<CR>
 map <leader>gs      :Gstatus<CR>
 map <leader>gc      :Gcommit -v<CR>
 map <leader>ev      :e ~/.vimrc<CR>

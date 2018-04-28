@@ -53,3 +53,5 @@ export PATH MANPATH
 
 load_rc_d $HOME/.shrc.d .sh
 
+[ -e $HOME/.nvm/nvm.sh ] && source $HOME/.nvm/nvm.sh
+
