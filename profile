@@ -5,6 +5,8 @@ export DOTFILES="$DOTFILES_DIRS"
 
 if [ `uname` = "Darwin" ]; then
     export CLICOLOR=1
+
+    eval `/usr/libexec/path_helper -s`
 fi
 
 # editor
