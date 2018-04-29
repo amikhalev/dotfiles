@@ -49,11 +49,9 @@ export FZF_HOME="$HOME/.fzf"
 # nvm
 export NVM_DIR="$HOME/.nvm"
 
-[ -e $HOME/.zshenv.local ] && source $HOME/.zshenv.local
-
 export PATH MANPATH
 
 load_rc_d $HOME/.shrc.d .sh
 
-[ -e $HOME/.nvm/nvm.sh ] && source $HOME/.nvm/nvm.sh
+# [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 

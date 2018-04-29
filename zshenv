@@ -7,3 +7,5 @@ ZSH_CACHE_DIR="$ZPLUG_HOME"
 ZSH_COMPDUMP="$ZSH_CACHE_DIR/zcompdump"
 HISTFILE="$ZSH_CACHE_DIR/histfile"
 
+[ -e $HOME/.zshenv.local ] && source $HOME/.zshenv.local
+
