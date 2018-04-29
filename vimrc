@@ -48,9 +48,9 @@ if has('nvim')
     " Plug 'mhartington/nvim-typescript', { 'do': ':UpdateRemotePlugins' }
     Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
 else
-    Plug 'roxma/nvim-yarp'
-    Plug 'roxma/vim-hug-neovim-rpc'
-    Plug 'Shougo/deoplete.nvim'
+    " Plug 'roxma/nvim-yarp'
+    " Plug 'roxma/vim-hug-neovim-rpc'
+    " Plug 'Shougo/deoplete.nvim'
     Plug 'Shougo/denite.nvim'
 endif
 " Plug 'Shougo/vimproc.vim', { 'do': 'make' }
