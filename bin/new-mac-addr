@@ -1,4 +1,6 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
+
+set -e
 
 if [ `uname` != "Darwin" ]; then
     >&2 echo "This script only supports macOS"
@@ -6,7 +8,13 @@ if [ `uname` != "Darwin" ]; then
 fi
 
 interface=${1:-en0}
-new_mac=$(openssl rand -hex 6 | sed 's/\(..\)/\1:/g; s/.$//')
+
+if [ -z "$2" ] || [ "$2" == "random" ]; then
+    new_mac=$(openssl rand -hex 6 | sed 's/\(..\)/\1:/g; s/.$//')
+else
+    new_mac="$2"
+fi
+
 echo "Setting MAC address on interface $interface to $new_mac"
 sudo ifconfig $interface ether $new_mac
 sudo ifconfig $interface down
