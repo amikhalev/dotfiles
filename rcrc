@@ -1,2 +1,3 @@
 EXCLUDES="install.sh"
+UNDOTTED="bin"
 DOTFILES_DIRS="$HOME/.dotfiles"
