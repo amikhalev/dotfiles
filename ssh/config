@@ -24,6 +24,21 @@ Host Alexs-MBP
     IdentityFile ~/.ssh/id_rsa
     ForwardAgent yes
 
+Host lish
+    HostName lish-fremont.linode.com
+    User amikhalev
+    Port 443
+
+Host amikhalev.com
+    HostName amikhalev.com
+    User alex
+    Port 10022
+
+Host home.amikhalev.com
+    HostName home.amikhalev.com
+    User root
+    Port 10022
+
 ControlMaster auto
 ControlPath /tmp/ssh_control_%h_%p_%r
 ControlPersist 2h
