@@ -23,6 +23,8 @@ zplug "junegunn/fzf-bin", from:gh-r, as:command, rename-to:fzf
 # Package manager plugins
 if [[ `uname` == 'Linux' ]]; then # Linux (probably arch linux)
     zplug "plugins/archlinux", from:oh-my-zsh
+    zplug "plugins/debian", from:oh-my-zsh
+    zplug "plugins/systemd", from:oh-my-zsh
 elif [[ `uname` == 'Darwin' ]]; then # Mac OS X
     zplug "plugins/osx", from:oh-my-zsh
     zplug "/usr/local/share/zsh-completions", from:local
