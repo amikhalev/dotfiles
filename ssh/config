@@ -12,11 +12,13 @@ Host RouterMain
     HostName RouterMain
     User root
     IdentityFile ~/.ssh/id_rsa
+    ForwardAgent yes
 
 Host RouterBridge
     HostName RouterBridge
     User root
     IdentityFile ~/.ssh/id_rsa
+    ForwardAgent yes
 
 Host Alexs-MBP
     HostName Alexs-MBP
@@ -33,11 +35,13 @@ Host amikhalev.com
     HostName amikhalev.com
     User alex
     Port 10022
+    ForwardAgent yes
 
 Host home.amikhalev.com
     HostName home.amikhalev.com
     User root
     Port 10022
+    ForwardAgent yes
 
 ControlMaster auto
 ControlPath /tmp/ssh_control_%h_%p_%r
