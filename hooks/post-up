@@ -13,6 +13,7 @@ if [ ! -d "$ZPLUG_ROOT" ]; then
 fi
 
 # Install zsh bundles
+zsh -ic "zplug install" </dev/null
 zsh -ic "zplug update" </dev/null
 
 # Install vim-plug if not already installed
