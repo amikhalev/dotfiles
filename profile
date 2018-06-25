@@ -49,9 +49,13 @@ export FZF_HOME="$HOME/.fzf"
 # nvm
 export NVM_DIR="$HOME/.nvm"
 
+[ -e "$HOME/bin" ] && try_add_path "$HOME/bin"
+
 export PATH MANPATH
 
 load_rc_d $HOME/.shrc.d .sh
 
 # [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+
+[[ -f ~/.profile.local ]] && . ~/.profile.local
 

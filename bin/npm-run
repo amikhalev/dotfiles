@@ -1,0 +1,21 @@
+#1/usr/bin/env bash
+
+set -e
+
+FILE=$(readlink -f "./package.json")
+SH="/usr/bin/env bash -v"
+script_name=$1
+
+[ -f $FILE ] || ( echo "No package.json file found in current directory"; exit 1 )
+[ -z "$script_name" ] && ( echo "Usage: $0 <script name>"; exit 1)
+
+export PATH="./node_modules/.bin:$PATH"
+
+package_json=$(cat ./package.json)
+
+script_content=$(echo "$package_json" | jq '.scripts["'"$script_name"'"]' -r -e ) \
+    || ( echo 'Script "'$script_name'" not found'; exit 1 )
+
+echo "$script_content" | $SH \
+    || ( echo 'Script "'$script_name'" failed with status '$?; exit 1 )
+

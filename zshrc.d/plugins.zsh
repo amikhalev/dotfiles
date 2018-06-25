@@ -19,12 +19,16 @@ zplug "plugins/vi-mode", from:oh-my-zsh
 # Other plugins
 zplug "supercrabtree/k"
 zplug "junegunn/fzf-bin", from:gh-r, as:command, rename-to:fzf
+zplug "trizen/trizen"
 
 # Package manager plugins
 if [[ `uname` == 'Linux' ]]; then # Linux (probably arch linux)
     zplug "plugins/archlinux", from:oh-my-zsh
     zplug "plugins/debian", from:oh-my-zsh
+<<<<<<< HEAD
     zplug "plugins/systemd", from:oh-my-zsh
+=======
+>>>>>>> a7ad46efb88b8cb91b4d7eab2758dc0babd53371
 elif [[ `uname` == 'Darwin' ]]; then # Mac OS X
     zplug "plugins/osx", from:oh-my-zsh
     zplug "/usr/local/share/zsh-completions", from:local

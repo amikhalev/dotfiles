@@ -1,0 +1,2 @@
+#!/bin/sh
+wakeonlan 6A:26:FB:6D:AF:A8

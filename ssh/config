@@ -12,16 +12,35 @@ Host RouterMain
     HostName RouterMain
     User root
     IdentityFile ~/.ssh/id_rsa
+    ForwardAgent yes
 
 Host RouterBridge
     HostName RouterBridge
     User root
     IdentityFile ~/.ssh/id_rsa
+    ForwardAgent yes
 
 Host Alexs-MBP
     HostName Alexs-MBP
     User alex
     IdentityFile ~/.ssh/id_rsa
+    ForwardAgent yes
+
+Host lish
+    HostName lish-fremont.linode.com
+    User amikhalev
+    Port 443
+
+Host amikhalev.com
+    HostName amikhalev.com
+    User alex
+    Port 10022
+    ForwardAgent yes
+
+Host home.amikhalev.com
+    HostName home.amikhalev.com
+    User root
+    Port 10022
     ForwardAgent yes
 
 ControlMaster auto
