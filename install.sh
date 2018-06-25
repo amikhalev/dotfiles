@@ -25,29 +25,54 @@ install_rcm_linux() {
         sudo add-apt-repository ppa:martin-frost/thoughtbot-rcm
         sudo apt-get update
         sudo apt-get install rcm
+    elif has_command dnf; then
+	echo Installing rcm from Fedora copr
+        sudo dnf copr enable seeitcoming/rcm
+        sudo dnf install rcm
     else
         echo "No known way to install rcm. Please install it manually"
         exit 1
     fi
 }
 
-install_git_brew() {
-    echo Installing git from homebrew
-    brew install git
+install_pkg_brew() {
+    local pkg=$1
+    echo Installing $pkg from homebrew
+    brew install $pkg
 }
 
-install_git_linux() {
+install_pkg_linux() {
+    local pkg=$1
     if has_command pacman; then
-        echo Installing git from pacman
-        sudo pacman -S git
+        echo Installing $pkg from pacman
+        sudo pacman -S $pkg
     elif has_command apt-get; then
-        echo Installing git from apt-get
+        echo Installing $pkg from apt-get
         sudo apt-get update
-        sudo apt-get install git
+        sudo apt-get install $pkg
+    elif has_command dnf; then
+        echo Installing $pkg from dnf
+        sudo dnf install $pkg
     else
-        echo No known way to install git. Please install it manually
+        echo No known way to install $pkg. Please install it manually
         exit 1
     fi
+}
+
+install_pkg() {
+    local pkg=$1
+    case `uname` in
+        Darwin)
+            install_pkg_brew $pkg
+            ;;
+        Linux)
+            install_pkg_linux $pkg
+            ;;
+        *)
+            echo "Unknown system `uname`. Install $pkg manually"
+            exit 1
+            ;;
+    esac
 }
 
 if ! has_command rcup; then
@@ -68,21 +93,15 @@ else
     echo rcup found at `which rcup`
 fi
 
+if ! has_command zsh; then 
+    echo "zsh is not installed!"    
+    install_pkg zsh
+fi
+
 if [ ! -e "$DOTFILES_DIR" ]; then
     if ! has_command git; then 
         echo "git is not installed!"    
-        case `uname` in
-            Darwin)
-                install_git_brew
-                ;;
-            Linux)
-                install_git_linux
-                ;;
-            *)
-                echo "Unknown system `uname`. Install git manually"
-                exit 1
-                ;;
-        esac
+        install_pkg git
     fi
     echo Cloning dotfiles repo
     git clone --recursive $REPO_URL $DOTFILES_DIR
