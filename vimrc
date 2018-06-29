@@ -40,6 +40,8 @@ Plug 'majutsushi/tagbar'
 Plug 'radenling/vim-dispatch-neovim'
 Plug 'editorconfig/editorconfig-vim'
 
+Plug 'jamessan/vim-gnupg'
+
 " Plug ('SirVer/ultisnips')
 " Plug ('honza/vim-snippets')
 
