@@ -15,6 +15,7 @@ zplug "plugins/pip", from:oh-my-zsh
 zplug "plugins/pass", from:oh-my-zsh
 zplug "plugins/docker", from:oh-my-zsh
 zplug "plugins/vi-mode", from:oh-my-zsh
+zplug "plugins/command-not-found", from:oh-my-zsh
 
 # Other plugins
 zplug "supercrabtree/k"
